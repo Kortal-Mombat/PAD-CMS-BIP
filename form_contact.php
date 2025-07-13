@@ -1,6 +1,16 @@
 <h3 class="header">Formularz kontaktowy</h3>
 <a name="form"></a>
-<?
+<?php
+	$_POST["captcha"] = $_POST["captcha"] ?? '';
+	$_POST["imie"] = $_POST["imie"] ?? '';
+	$_POST["text"] = $_POST["text"] ?? '';
+	$_POST["email"] = $_POST["email"] ?? '';
+	$_POST["tel"] = $_POST["tel"] ?? '';
+	$_POST["dm"] = $_POST["dm"] ?? '';
+	$_SESSION["captcha_wynik"] = $_SESSION["captcha_wynik"] ?? '';
+	$err = $err ?? '';
+	$sl_err = $sl_err ?? '';
+
 	$GET_captcha = intval($_POST["captcha"]);
 	$captcha_txt = '';
 	$ile_liczb = mt_rand(2, 3);
@@ -8,7 +18,7 @@
 
 	$ip = $_SERVER["REMOTE_ADDR"]; 
 	
-	if ($_GET['action'] == 'send')
+	if (isset($_GET['action']) && $_GET['action'] == 'send')
 	{
 		$imie = 'value="'.$_POST['imie'].'"';
 		$text = htmlspecialchars(strip_tags($_POST['text']));
@@ -101,38 +111,38 @@
 
 	
 ?>
-    <form name="f_contact" class="f_contact" method="post" action="<? echo 'index.php?c='.$_GET['c'].'&amp;id='.$_GET['id'].'&amp;action=send#form'; ?>">
+    <form name="f_contact" class="f_contact" method="post" action="<?= 'index.php?c='.$_GET['c'].'&amp;id='.$_GET['id'].'&amp;action=send#form'; ?>">
     <input type="hidden" name="dm" value="" />
                 
 	<fieldset>  
 		<legend class="hide">Kontakt</legend>
 
         <label for="name">Imię i nazwisko (wymagane):</label><br />
-        <div class="inputborder"><input type="text" id="name" name="imie" size="60" maxlength="40" <? echo $imie; ?> /></div>
+        <div class="inputborder"><input type="text" id="name" name="imie" size="60" maxlength="40" <?= $imie; ?> /></div>
 
         <label for="email">Adres e-mail (wymagane):</label><br /> 
-        <div class="inputborder"><input type="text" id="email" name="email" size="60" maxlength="40" <? echo $email; ?> /></div>
+        <div class="inputborder"><input type="text" id="email" name="email" size="60" maxlength="40" <?= $email; ?> /></div>
 
         <label for="tel">Numer telefonu:</label><br /> 
-        <div class="inputborder"><input type="text" id="tel" name="tel" size="60" maxlength="40" <? echo $tel; ?> /></div>
+        <div class="inputborder"><input type="text" id="tel" name="tel" size="60" maxlength="40" <?= $tel; ?> /></div>
 
         <label for="text">Treść pytania (wymagane):</label><br />
-        <div class="inputborder"><textarea id="text" name="text" cols="57" rows="8"><? echo $text; ?></textarea></div>
+        <div class="inputborder"><textarea id="text" name="text" cols="57" rows="8"><?= $text; ?></textarea></div>
                     
-        <p class="kom">Twój numer IP: <strong><? echo get_ip(); ?></strong></p>		
+        <p class="kom">Twój numer IP: <strong><?= get_ip(); ?></strong></p>		
 
         <p>W celu utrudnienia rozsyłania spamu przez automaty, proszę rozwiązać proste zadanie matematyczne.<br />Dla przykładu: 2+1 daje 3.</p>
-        <label for="captcha">* Zadanie matematyczne: <? echo $captcha_txt; ?> daje </label> <input type="text" id="captcha" title="Tutaj wpisz rozwiązanie" name="captcha" size="3" maxlength="10" />
+        <label for="captcha">* Zadanie matematyczne: <?= $captcha_txt; ?> daje </label> <input type="text" id="captcha" title="Tutaj wpisz rozwiązanie" name="captcha" size="3" maxlength="10" />
         <br />			
 
-		<?
-        if ($_POST['zgoda']=='on')
+		<?php
+        if (isset($_POST['zgoda']) && $_POST['zgoda']=='on')
       		$checked = 'checked';
         else
        		$checked = '';
         ?>
         <div class="inputAgree">
-            <input type="checkbox" name="zgoda" id="zgoda" value="on" <? echo $checked; ?> />
+            <input type="checkbox" name="zgoda" id="zgoda" value="on" <?= $checked; ?> />
             <label for="zgoda">Wyrażam zgodę na przetwarzanie moich danych osobowych przez <?php echo $pageInfo['name']; ?>, zgodnie z obowiązującym prawem i polityką prywatności.</label>
         </div>
           

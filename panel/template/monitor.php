@@ -1,4 +1,4 @@
-<?
+<?php
 if (!$showMonitor)
 {
 	echo '<h2>Monitor aktywności</h2>';
@@ -6,9 +6,9 @@ if (!$showMonitor)
 		
 	?>
 	<table width="100%">
-			<caption>Ilość monitorów: <? echo $numRows; ?></caption>
+			<caption>Ilość monitorów: <?= $numRows; ?></caption>
 			<tr><th width="5%">L.p</th><th width="65%">Użytkownik</th><th width="20%">Ostatnia wizyta</th><th width="10%">Akcja</th></tr>
-			<?
+			<?php
 				$pole = $i = 0;
 				foreach ($outRow as $rec)
 				{
@@ -56,7 +56,7 @@ if (!$showMonitor)
 			    ?>
 			</div>	
 		
-	<?
+	<?php
 }
 else if ($showMonitor)
 {
@@ -65,16 +65,16 @@ else if ($showMonitor)
 	
 	?>
 	<ul class="navMenu">
-    	<li><a href="<? echo $PHP_SELF.'?c=' . $_GET['c'];?>"><span class="icoBack"></span>Wstecz</a></li>
+    	<li><a href="<?= $PHP_SELF.'?c=' . $_GET['c'];?>"><span class="icoBack"></span>Wstecz</a></li>
     </ul>
-	<?
+	<?php
 	if ($numRows > 0)
 	{
 		?>
 		<table class="records" width="100%">
-			<caption>Ilość pozycji: <? echo $numRows; ?></caption>
+			<caption>Ilość pozycji: <?= $numRows; ?></caption>
             <tr><th width="5%">Lp.</th><th width="20%">Data</th><th width="50%">Wykonane zadanie</th><th width="25%">Numer IP</th></tr>
-			<?
+			<?php
 				$pole = $i = 0;
 				foreach ($outRow as $rec )
 				{
@@ -96,7 +96,7 @@ else if ($showMonitor)
 				}
 			?>
 		</table>            
-		<?
+		<?php
 		$url = $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=show&amp;id=' . $_GET['id'] . '&amp;s=';
 		include (CMS_TEMPL . DS . 'pagination.php');	
 

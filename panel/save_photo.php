@@ -38,6 +38,7 @@ $parts = explode( DS, CMS_BASE );
 array_pop( $parts );
 define( 'CMS_ROOT', implode( DS, $parts ) );
 
+include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
 include_once ( CMS_ROOT . DS . 'includes' . DS . 'functions.php' );
 
 if ($uploadPermission){

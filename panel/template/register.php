@@ -1,14 +1,15 @@
-<?
-if (!$showMonitor)
+<?php
+if (isset($showMonitor) && !$showMonitor)
 {
+	$_GET['action'] = $_GET['action'] ?? '';
 	echo '<h2>Rejestr zmian dla: '. $articleName .'</h2>';
 	echo $message;
 	
 	?>
 	<ul class="navMenu">
-    	<li><a href="<? echo $backLink; ?>"><span class="icoBack"></span>Wstecz</a></li>
+    	<li><a href="<?= $backLink; ?>"><span class="icoBack"></span>Wstecz</a></li>
     </ul>
-	<?
+	<?php
 	if ($_GET['action'] == 'show')
 	{
 		echo '<h3>Poprzednia wersja artykułu</h3>';
@@ -21,9 +22,9 @@ if (!$showMonitor)
 		{
 			?>
 			<table class="records" width="100%">
-				<caption>Ilość pozycji: <? echo $numRows; ?></caption>
+				<caption>Ilość pozycji: <?= $numRows; ?></caption>
 				<tr><th width="5%">Lp.</th><th>Os. sporz.</th><th>Os. wprow.</th><th>Data publ.</th><th>Opis zmiany</th><th>Akcja</th></tr>
-				<?
+				<?php
 					$pole = $i = 0;
 					foreach ($outRow as $rec )
 					{
@@ -44,7 +45,7 @@ if (!$showMonitor)
 								.'<td>' . $rec['data_publ'] . '</td>'
 								.'<td>' . $rec['akcja'] . '</td>'
 								.'<td class="butIcons">'
-									.'<a href="'.$PHP_SELF.'?c=' . $_GET['c'] . '&amp;mt=' . $_SESSION['mt'] . '&amp;idp=' . $_GET['idp'] . '&amp;action=show&amp;id='.$_GET['id'].'&amp;idr='.$rec['id'].'" title="Poprzednia wersja"><img src="template/images/icoGoto.png" alt="Poprzednia wersja" class="imgAct" /></a>'
+									.'<a href="'.$PHP_SELF.'?c=' . $_GET['c'] . '&amp;mt=' . $_SESSION['mt'] . '&amp;idp=' . $_GET['idp'] . '&amp;action=show&amp;id='.($_GET['id'] ?? '').'&amp;idr='.$rec['id'].'" title="Poprzednia wersja"><img src="template/images/icoGoto.png" alt="Poprzednia wersja" class="imgAct" /></a>'
 									.'<a href="javascript: confirmLink(\'' . $delLink . '&amp;idr=' . $rec['id'] . '\',\'' . $MSG_del_confirm . '\');" title="Usuń pozycję"><img src="template/images/icoDel.png" alt="Usuń pozycję" class="imgAct" /></a>'
 								.'</td>'
 								
@@ -52,7 +53,7 @@ if (!$showMonitor)
 					}
 				?>
 			</table>            
-			<?
+			<?php
 			/*
 			$url = $PHP_SELF.'?c=' . $_GET['c'] . '&amp;id=' . $_GET['id'] . '&amp;idp=' . $_GET['idp'] . '&amp;s=';
 			include (CMS_TEMPL . DS . 'pagination.php');				

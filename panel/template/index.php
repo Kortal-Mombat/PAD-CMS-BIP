@@ -7,7 +7,7 @@ if ($showPanel)
     include_once ( CMS_TEMPL . DS . 'left.php');
 ?>
     <div id="contentWrapper">
-    <div id="crumbpath"><span>Jesteś tutaj:</span> <? echo show_crumbpath($crumbpath, $crumbpathSep); ?></div>
+    <div id="crumbpath"><span>Jesteś tutaj:</span> <?= show_crumbpath($crumbpath, $crumbpathSep); ?></div>
     <div id="content" role="main">
     <a id="skip_txt"></a>
 	<?php

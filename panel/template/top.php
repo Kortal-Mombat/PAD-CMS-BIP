@@ -26,10 +26,10 @@
         </ul>
     </div>
     
-    <h1><span><? echo $cmsConfig['cms_title'] . ' (' . $cms_version . ')</span>' . $pageInfo['name']; ?></h1>
+    <h1><span><?= $cmsConfig['cms_title'] . ' (' . $cms_version . ')</span>' . $pageInfo['name']; ?></h1>
 
     <ul class="menuLogout">
-    	<li class="loggedUser"><span>Witaj,</span><? echo $_SESSION['userData']['name']; ?></li>
+    	<li class="loggedUser"><span>Witaj,</span><?= $_SESSION['userData']['name']; ?></li>
         <li class="logOut"><a href="<?php echo $PHP_SELF.'?c=logout'?>"><?php echo $TXT_but_logout; ?> <img src="template/images/imgLogout.png" alt=""/></a></li>
         <li class="course"><a href="http://pad.widzialni.org/container/samouczki/samouczek--czyli-jak-korzystac-z-panelu-administracyjnego-dostepnego-biuletynu-informacji-publicznej-pad.doc" title="Dokument DOC - 7MB">Samouczek<img src="template/images/butCourse.png" alt=""/></a></li>
     </ul>

@@ -15,6 +15,9 @@ $(document).ready(function(){
 
 </script>
 <?php
+	$_GET['kword'] = $_GET['kword'] ?? '';
+	$_GET['action'] = $_GET['action'] ?? '';
+
 	echo '<div class="txtWrapper">';
 	echo $message;
 	?>
@@ -30,19 +33,19 @@ $(document).ready(function(){
                     <br/>
                     
                     <label for="data_od">Data poczatkowa (rok-miesiac-dzien):</label> 
-                    <input name="od" class="datepicker" type="text" maxlength="10" size="11" value="<?php echo $input_od; ?>" id="data_od"/> 
+                    <input name="od" class="datepicker" type="text" maxlength="10" size="11" value="<?php echo $input_od ?? ''; ?>" id="data_od"/> 
                     <br/>
                     
                     <label for="data_do">Data koncowa (rok-miesiac-dzien):</label> 
-                    <input name="do" class="datepicker" type="text" maxlength="10" size="11" value="<?php echo $input_do; ?>" id="data_do"/>
+                    <input name="do" class="datepicker" type="text" maxlength="10" size="11" value="<?php echo $input_do ?? ''; ?>" id="data_do"/>
                     <br/>
                     
 					<label for="os_wpr">Osoba wprowadzajaca:</label>
-					<input type="text" name="os_wpr" id="os_wpr" size="30" value="<?php echo $_GET['os_wpr']; ?>" />
+					<input type="text" name="os_wpr" id="os_wpr" size="30" value="<?php echo $_GET['os_wpr'] ?? ''; ?>" />
                     <br/>
 
 					<label for="os_odp">Osoba sporzadzajaca:</label>
-					<input type="text" name="os_odp" id="os_odp" size="30" value="<?php echo $_GET['od_odp']; ?>" />
+					<input type="text" name="os_odp" id="os_odp" size="30" value="<?php echo $_GET['od_odp'] ?? ''; ?>" />
                     <br/>
                     
                     <input type="submit" name="searchAdv" value="<?php echo $TXT['srch_button']; ?>" />
@@ -54,14 +57,16 @@ $(document).ready(function(){
         	
 	<?php
 	echo '<div class="searchList">';
-	if ($searchCount > 0)
+	if (isset($searchCount) && $searchCount > 0)
 	{
 		for ($i=$searchStart; $i<($searchStart+$pageConfig['limit']); $i++)
 		{
-			echo '<div class="searchTxt">'
-				.'<h3>'.$searchArray[$i]['url'].'</h3>'
-				.'<div class="searchLeadTxt"><p>'.$searchArray[$i]['lead'].'</p></div>'
-				.'</div>';
+			if(isset($searchArray[$i])){
+				echo '<div class="searchTxt">'
+					.'<h3>'.$searchArray[$i]['url'].'</h3>'
+					.'<div class="searchLeadTxt"><p>'.$searchArray[$i]['lead'].'</p></div>'
+					.'</div>';
+			}
 		}
 	}
 	

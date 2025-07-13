@@ -6,7 +6,7 @@
 <?php
 	echo $message;
 ?>
-<form method="post"  class="formEdAdd" action="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=send'; ?>" name="formSend" enctype="multipart/form-data">
+<form method="post"  class="formEdAdd" action="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=send'; ?>" name="formSend" enctype="multipart/form-data">
 <div id="tabs">
     <ul>
         <li><a href="#txt">Treść</a></li>

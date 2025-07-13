@@ -1,8 +1,9 @@
 <?php
 if ($showPanel)
 {
-	if (get_priv_controler($_GET['c']))
+	if (get_priv_controler($_GET['c']) && isset($_GET['filename']) && isset($_GET['action']))
 	{	
+		$_GET['act'] = $_GET['act'] ?? '';
 		$_GET['filename'] = str_replace('|', '.', $_GET['filename']);
 		
 	

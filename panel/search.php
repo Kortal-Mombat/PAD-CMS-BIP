@@ -3,6 +3,11 @@ if ($showPanel)
 {
     if (get_priv_controler($_GET['c']))
     {
+		
+	$_GET['action'] = $_GET['action'] ?? '';
+	$_GET['query'] = $_GET['query'] ?? '';
+	$_SESSION['query'] = $_SESSION['query'] ?? '';
+
 	$TEMPL_PATH = CMS_TEMPL . DS . 'search.php';
 	
 	$pageTitle = 'Wyszukiwarka';

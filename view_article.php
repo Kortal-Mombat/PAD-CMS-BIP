@@ -1,4 +1,4 @@
-<?
+<?php
 	$res = new resClass;
 	
 	$showArticle = true;

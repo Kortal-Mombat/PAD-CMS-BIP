@@ -1,8 +1,8 @@
 <?php
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-	$php_version = '5.2.6';
-	$cms_version = '1.2.1';
+	$php_version = '8.2.0';
+	$cms_version = '1.2.1.ak3';
 	
 	setlocale(LC_ALL, 'pl_PL');
 	
@@ -21,8 +21,8 @@
 		'cms' => 'PAD',
 		'help_email' => 'pad@widzialni.org',
 		'limit' => 10,
-		'upload_files' => array('txt', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'odt', 'odf', 'odp', 'swf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'ppt', 'pptx', 'pps', 'avi', 'mov', 'mpg', 'mpeg', 'flv', 'mp3', 'mp4', 'wav', 'zip', 'rar', 'tar', '7z', 'ogg', 'ogv', 'wmv', 'rm', 'm4v', 'm2v', '3gp', '3g2'),
-		'photos' => array('jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'swf', 'SWF'),
+		'upload_files' => array('txt', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'odt', 'odf', 'odp', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'ppt', 'pptx', 'pps', 'avi', 'mov', 'mpg', 'mpeg', 'flv', 'mp3', 'mp4', 'wav', 'zip', 'rar', 'tar', '7z', 'ogg', 'ogv', 'wmv', 'rm', 'm4v', 'm2v', '3gp', '3g2'),
+		'photos' => array('jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF'),
 		'replace_char' => array(' '=>'-', '%'=>'', '"'=>'', '\''=>'', '\\'=>'', '_'=>'-', ','=>'-', '/'=>'-', '&'=>'', 'ą'=>'a', 'ż'=>'z', 'ś'=>'s', 'ź'=>'z', 'ę'=>'e', 'ć'=>'c', 'ń'=>'n', 'ó'=>'o', 'ł'=>'l', 'Ą'=>'A', 'Ż'=>'Z', 'Ś'=>'S', 'Ź'=>'Z', 'Ę'=>'E', 'Ć'=>'C', 'Ń'=>'N', 'Ó'=>'O', 'Ł'=>'L', '&quot;'=>''),
 		'replace_char_meta' => array('"'=>'', '\''=>'', '\\'=>'', ';'=>',', ':'=>'-', '{'=>'(', '}'=>')'),
 		'replace_char_toview' => array('"'=>'[cudzyslow]', '\''=>'[apostrof]', ';'=>'[srednik]', ':'=>'[dwukropek]', '{'=>'[klamral]', '}'=>'[klamrap]'),

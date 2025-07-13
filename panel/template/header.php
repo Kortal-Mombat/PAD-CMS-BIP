@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
-<title><? echo $pageTitle . ' - ' . $cmsConfig['cms_title'] . ' - ' . $pageInfo['name']; ?></title>
+<title><?= ($pageTitle ?? '') . ' - ' . $cmsConfig['cms_title'] . ' - ' . $pageInfo['name']; ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="Polska Akademia Dostępności" />
 <meta name="robots" content="noindex, nofollow" />
-<?
+<?php
 	foreach ($js as $k => $v)
 	{
-		echo '<script type="text/javascript" src="http://' . $pageInfo['host'] . '/panel/template/js/' . $v . '"></script>' . "\r\n";
+		echo '<script type="text/javascript" src="//' . $pageInfo['host'] . '/panel/template/js/' . $v . '"></script>' . "\r\n";
 	}
 	
 	foreach ($css as $k => $v)
 	{
-		echo '<link rel="stylesheet" media="all" type="text/css" href="http://' . $pageInfo['host'] . '/panel/template/css/' . $v . '"/>' . "\r\n";
+		echo '<link rel="stylesheet" media="all" type="text/css" href="//' . $pageInfo['host'] . '/panel/template/css/' . $v . '"/>' . "\r\n";
 	}
 	
-	echo '<link rel="shortcut icon" href="http://' . $pageInfo['host'] . '/panel/template/images/favicon.ico" />' . "\r\n";
+	echo '<link rel="shortcut icon" href="//' . $pageInfo['host'] . '/panel/template/images/favicon.ico" />' . "\r\n";
 	
+	$_GET['c'] = $_GET['c'] ?? '';
 	/*
 	// do browsera
 	*/
 	if ($_GET['c'] == 'browser'){
 	?>
-	<script type="text/javascript" src="http://<?php echo $pageInfo['host']; ?>/panel/template/js/tiny_mce/tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="//<?php echo $pageInfo['host']; ?>/panel/template/js/tiny_mce/tiny_mce_popup.js"></script>
 	<script language="javascript" type="text/javascript">
 	var FileBrowserDialogue = {
 		init : function () {

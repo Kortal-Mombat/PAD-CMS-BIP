@@ -1,6 +1,6 @@
-<h2 class="mainHeader"><? echo $pageName; ?></h2>
+<h2 class="mainHeader"><?= $pageName; ?></h2>
 
-<?
+<?php
 	foreach ($menuType as $k) 
 	{
 		if ($k['active'] == 1)

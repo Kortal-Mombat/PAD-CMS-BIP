@@ -1,7 +1,7 @@
 <div id="menuWrapper" role="navigation">
 	<h2 class="hide"><a id="skip_mm">Menu główne</a></h2>
-	<?
-
+	<?php
+	$_SESSION['mp'] = $_SESSION['mp'] ?? '';
 	if ($numRowsMenu>0)
 	{
 		echo '<ul>';

@@ -1,5 +1,5 @@
-<?
-	if ($pagination['end'] > 1)
+<?php
+	if (isset($pagination) && $pagination['end'] > 1)
 	{
 		echo '<div class="pagination">';
 			

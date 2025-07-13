@@ -43,7 +43,7 @@
 				$content  = '<h1>Została wysłana do Ciebie prośba o zmianę hasła z adresu ' . $_SERVER['SERVER_NAME'] . '</h1>' . "\r\n";
 				$content .= '<p><b>Nazwa uzytkownika:</b> '. $r['name'] .'</p>' . "\r\n";
 				$content .= '<p>Jeśli nie wysyłałeś żądania zmiany hasła zignoruj tego e-maila.</p>' . "\r\n";
-				$content .= '<p>Aby zmianić hasło przejdź na nastepujący adres: <a href="http://' . $pageInfo['host'] . '/panel/index.php?c=password_reset&action=reset&user='.$r['login'].'&ak='.$auth_key.'">http://' . $pageInfo['host'] . '/panel/index.php?c=password_reset&action=reset&user='.$r['login'].'&ak='.$auth_key.'</a></p>' . "\r\n";
+				$content .= '<p>Aby zmianić hasło przejdź na nastepujący adres: <a href="//' . $pageInfo['host'] . '/panel/index.php?c=password_reset&action=reset&user='.$r['login'].'&ak='.$auth_key.'">//' . $pageInfo['host'] . '/panel/index.php?c=password_reset&action=reset&user='.$r['login'].'&ak='.$auth_key.'</a></p>' . "\r\n";
 	
 				$content .= '<p><b>IP nadawcy:</b> '.get_ip().'</p>' . "\r\n";
 				
@@ -88,7 +88,7 @@
 		{
 			$TEMPL_PATH = CMS_TEMPL . DS . 'password_reset_form.php';
 			
-			if ($_POST['send_reset'])
+			if (isset($_POST['send_reset']))
 			{
 				if (trim($_POST['passwd']) == '')
 				{

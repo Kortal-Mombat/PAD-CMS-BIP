@@ -1,4 +1,4 @@
-<?
+<?php
 	session_start();
 	if (isset($_GET['style'])) {
 		$_SESSION['style'] = $_GET['style'];
@@ -8,6 +8,6 @@
 	{
 		$_SESSION['contr'] = $_GET['contr'];
 	}
-	header('Location: '.$_SERVER["HTTP_REFERER"]);
+	header('Location: '.($_SERVER["HTTP_REFERER"] ?? '/'));
 ?>
 

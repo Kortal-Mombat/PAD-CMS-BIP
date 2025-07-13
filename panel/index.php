@@ -54,6 +54,7 @@
  	/**
 	 * kontrolery
 	 */ 		
+	$_GET['c'] = $_GET['c'] ?? '';
 	switch($_GET['c']) {
 			
 		case 'page' : 

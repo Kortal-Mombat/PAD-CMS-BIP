@@ -1,5 +1,5 @@
 <div class="pagination">
-<?
+<?php
 	if ($pagination['end'] > 1)
 	{
 	

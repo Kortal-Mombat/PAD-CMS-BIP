@@ -5,6 +5,7 @@
  
 	$pageName = $TXT['but_start'];
  
+	$_GET['id'] = $_GET['id'] ?? 0;
 	/**
 	 * Pobranie articles
 	 */		
@@ -15,6 +16,7 @@
 				AND ( (`" . $dbTables['articles'] . "`.start_date <= '".$date."' AND `" . $dbTables['articles'] . "`.stop_date >= '".$date."') OR ( `" . $dbTables['articles'] . "`.start_date = '0000-00-00' AND `" . $dbTables['articles'] . "`.stop_date = '0000-00-00') ) ";
 				
 	$params = array( 'id_page' => $_GET['id']);
+	$params = array();
 	$res->bind_execute( $params, $sql);
 	$numArticles = $res->data[0]['total_records'];		
 	
@@ -45,7 +47,11 @@
 				'type' => 'article'  
 				);
 			$res->bind_execute( $params, $sql);
-			$photoLead[$rowArticle['id_art']] = $res->data[0];				
+			if ($res->numRows != 0) {
+				$photoLead[$rowArticle['id_art']] = $res->data[0];				
+			}else {
+				$photoLead[$rowArticle['id_art']] = null;				
+			}
 		}
 	}			
 ?>

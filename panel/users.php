@@ -10,6 +10,11 @@ if ($showPanel)
 	}
 	else
 	{
+		$pageTitle = $pageTitle ?? '';
+		$_GET['action'] = $_GET['action'] ?? '';
+		$_GET['act'] = $_GET['act'] ?? '';
+		$_POST['action'] = $_POST['action'] ?? '';
+
 		$TEMPL_PATH = CMS_TEMPL . DS . 'users.php';
 		$pageTitle .= $TXT_menu_users;
 		
@@ -100,7 +105,7 @@ if ($showPanel)
 				}
 			}	
 			
-			if ($_POST['saveAdd'] || !$_POST['save']) {
+			if (isset($_POST['saveAdd']) || !isset($_POST['save'])) {
 				$showAddForm = true;
 			}
 								

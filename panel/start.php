@@ -2,7 +2,7 @@
 if ($showPanel)
 {
 	$TEMPL_PATH = CMS_TEMPL . DS . 'start.php';
-	$pageTitle .= $TXT_welcome;
+	$pageTitle = ($pageTitle ?? ''). $TXT_welcome;
 	
 	// usuniecie podgladow
 	$sql = "TRUNCATE TABLE `" . $dbTables['viewer'] . "`";

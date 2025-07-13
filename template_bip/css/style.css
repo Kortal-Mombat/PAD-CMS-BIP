@@ -66,7 +66,7 @@ a:focus { text-decoration: none; color:#fff; background:#5574a8; }
 
 /* header */
 #headerWrapper { width:100%; height:210px; }
-#header { position:relative; width:980px; height:210px; margin:0 auto; background: url("../images/imgtop.png") no-repeat 695px 0;}
+#header { position:relative; width:980px; height:210px; margin:0 auto; background: url("../images/imgTop.png") no-repeat 695px 0;}
 
 .logoBIP { position:absolute; top:95px; left:40px;}
 .logoBIP:focus { background:none; border:2px solid #41526e  }

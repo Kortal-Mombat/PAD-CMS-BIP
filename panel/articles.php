@@ -1,6 +1,13 @@
 <?php
 if ($showPanel)
 {
+	$_GET['action'] = $_GET['action'] ?? '';
+	$_GET['act'] = $_GET['act'] ?? '';
+	$_POST['attrib'] = $_POST['attrib'] ?? [];
+	if (!isset($_GET['id'])) {
+		header('Location: /error-404');
+		exit;
+	}
     if ($_GET['mt'])	
     { 
 		$_SESSION['mt'] = $_GET['mt'];

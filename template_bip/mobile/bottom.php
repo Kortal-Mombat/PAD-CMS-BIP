@@ -1,7 +1,7 @@
 <div id="footer">
     
     <div class="footerMenu">
-	    <a href="#top"><? echo $TXT['skiplink_top']; ?></a>
+	    <a href="#top"><?= $TXT['skiplink_top']; ?></a>
     </div>
     <div id="templateSep"></div>
     <div id="copyright">

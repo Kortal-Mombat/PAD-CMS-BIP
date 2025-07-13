@@ -1,8 +1,8 @@
 <div id="signupBox">
-<?
+<?php
 	echo $message;
 ?>
-<h1><? echo $pageInfo['name']; ?></h1>
+<h1><?= $pageInfo['name']; ?></h1>
 
 <div id="timeout">
 <?php

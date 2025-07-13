@@ -6,7 +6,10 @@ if ($showPanel)
 		$currentPath = '..' . DS . FILES_DIR;
 
 		$showParent = false;
-		
+
+		$_GET['d'] = $_GET['d'] ?? '';
+		$_GET['action'] = $_GET['action'] ?? '';
+
 		if ($_GET['d'] != ''){
 			$currentPath .= DS . $_GET['d'];
 			$_SESSION['userData']['currentPath'] = $currentPath;
@@ -14,7 +17,7 @@ if ($showPanel)
 			$showParent = true;
 		} else {
 			$_GET['d'] = '.';
-			$back = $GET['d'];
+			$back = $_GET['d'];
 		}
 		if ($back == ''){
 			$back = '.';

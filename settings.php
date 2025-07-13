@@ -1,4 +1,8 @@
 <?php
+	if (!class_exists('resClass')) {
+		exit();
+	}
+
 	$res = new resClass;
 	$sql = "SELECT * FROM `" . $dbTables['settings'] . "` WHERE (`lang`= ?) ORDER BY id_set";
 	$params = array ('lang' => $lang);
@@ -27,7 +31,8 @@
 
     if ($outSettings['www'] != '')
 	{
-		$pageInfo['www'] = 'http://' . str_replace('http://', '', $outSettings['www']);
+		$replace = ['http://','https://'];
+		$pageInfo['www'] = '//' . str_replace($replace, '', $outSettings['www']);
 	}
 		
 	if (is_numeric($outSettings['artNumStart']) )
@@ -42,6 +47,7 @@
 		$sql_limit = $pageConfig['limit'];
 	}
 	
+	$_GET['s'] = $_GET['s'] ?? 0;
 	if ($_GET['s'] > 0)
 	{
 		$sql_start = $sql_limit * $_GET['s'] - $sql_limit;

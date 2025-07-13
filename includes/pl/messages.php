@@ -107,7 +107,7 @@
 	$ERR['login_block'] = 'Twoje konto jest zablokowane.';
 	$ERR['login_protected'] = 'Ustawienia Twojego konta nie pozwalają na przeglądanie stron chronionych.';
 	$ERR['login_forum'] = 'Ustawienia Twojego konta nie pozwalają na dodawanie postów na forum.';
-	$ERR['contact'] = '<a href="mailto:'.$pageInfo['email'].'">Skontakuj się z administratorem serwisu</a>.';
+	$ERR['contact'] = '<a href="mailto:'.($pageInfo['email'] ?? '').'">Skontakuj się z administratorem serwisu</a>.';
 	
 	$ERR['form_err'] = 'Formularz zawiera błędy:';
 	$ERR['form_name'] = 'Wpisz imię i nazwisko.';

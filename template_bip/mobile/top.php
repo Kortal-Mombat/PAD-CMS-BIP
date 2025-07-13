@@ -1,11 +1,11 @@
 <a name="top" id="top"></a>
 
 <ul class="skipLinks">
-    <li><a href="#skip_tm"><? echo $TXT['skiplink_tm']; ?></a></li> 
-    <li><a href="#skip_mg"><? echo $TXT['skiplink_mg']; ?></a></li> 
-    <li><a href="#skip_txt"><? echo $TXT['skiplink_txt']; ?></a></li>
-    <li><a href="#skip_srch"><? echo $TXT['skiplink_srch']; ?></a></li>
-    <li><a href="index.php?p=map"><? echo $TXT['site_map']; ?></a></li>
+    <li><a href="#skip_tm"><?= $TXT['skiplink_tm']; ?></a></li> 
+    <li><a href="#skip_mg"><?= $TXT['skiplink_mg']; ?></a></li> 
+    <li><a href="#skip_txt"><?= $TXT['skiplink_txt']; ?></a></li>
+    <li><a href="#skip_srch"><?= $TXT['skiplink_srch']; ?></a></li>
+    <li><a href="index.php?p=map"><?= $TXT['site_map']; ?></a></li>
 </ul>	
     
 <div id="popup"></div>
@@ -24,7 +24,7 @@
 	<div id="templateMenuSep"></div>
         <?php 
 			// jesli zalogowany to doklej formatke zalogowanego
-			if ($showProtected || $forumLogged)
+			if (isset($showProtected) || isset($forumLogged))
 			{
 				include( CMS_TEMPL . DS . 'user_info.php');
 			}

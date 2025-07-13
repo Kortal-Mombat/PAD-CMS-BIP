@@ -16,19 +16,19 @@
 		var templateDir = '<?php echo $templateDir;?>';
 // ]]>
 </script>		
-<?
+<?php
 
-	$pathTemplate = 'http://' . $pageInfo['host'] . '/' . $templateDir;
+	$pathTemplate = '//' . $pageInfo['host'] . '/' . $templateDir;
 	$fbStyle = 'light';
 		
 	foreach ($js as $k => $v)
 	{
-		echo '<script type="text/javascript" src="'. $pathTemplate .'/js/' . $v . '"></script>' . "\r\n";
+		echo '<script type="text/javascript" src="'. $pathTemplate .'/js/' . $v . '?v='.$cms_version.'"></script>' . "\r\n";
 	}
 	
 	foreach ($css as $k => $v)
 	{
-		echo '<link rel="stylesheet" media="all" type="text/css" href="'. $pathTemplate .'/css/' . $v . '"/>' . "\r\n";
+		echo '<link rel="stylesheet" media="all" type="text/css" href="'. $pathTemplate .'/css/' . $v . '?v='.$cms_version.'"/>' . "\r\n";
 		if ($v == 'style.css')
 		{
 		    $overlayColor = $templateConfig['overColor'];
@@ -36,18 +36,18 @@
 		}		
 	}
 	
-	if ($_SESSION['contr'] == 1)
+	if (isset($_SESSION['contr']) && $_SESSION['contr'] == 1)
 	{
 		$fbStyle = 'dark';	 
 		$templateDir .= '/contrast';				
 		$overlayColor = $templateConfig['overColor-ct'];
 	    $popupBackground = '#000000';
 	    
-	    echo '<link rel="stylesheet" media="all" type="text/css" href="'. $pathTemplate .'/contrast/css/style.css"/>' . "\r\n";
+	    echo '<link rel="stylesheet" media="all" type="text/css" href="'. $pathTemplate .'/contrast/css/style.css?v='.$cms_version.'""/>' . "\r\n";
 	    echo '<link rel="stylesheet" media="all" type="text/css" href="'. $pathTemplate .'/contrast/css/jquery.fancybox.css"/>' . "\r\n";
 	}	
 		
-	echo '<link rel="shortcut icon" href="http://' . $pageInfo['host'] . '/' . $templateDir .'/images/favicon.ico" />' . "\r\n";
+	echo '<link rel="shortcut icon" href="//' . $pageInfo['host'] . '/' . $templateDir .'/images/favicon.ico" />' . "\r\n";
 
 ?>
 <script type="text/javascript">

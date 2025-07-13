@@ -1,4 +1,4 @@
-<?
+<?php
 	echo '<h2 class="mainHeader">' . $pageName .'</h2>';
 	
 	echo $message;
@@ -188,8 +188,8 @@
 		
 		if ($outSettings['pluginFB'] == 'włącz')
 		{
-			$fb_url = urlencode('http://'.$pageInfo['host'].'/index.php?c=article&id='. $_GET['id']);
-			echo '<div class="FBLike"><iframe title="Facebook" src=\'http://www.facebook.com/plugins/like.php?href='.$fb_url.'&amp;layout=standard&amp;show_faces=true&amp;width=400&amp;action=like&amp;font=tahoma&amp;colorscheme='.$fbStyle.'&amp;height=32&amp;show_faces=false\'></iframe></div>';   
+			$fb_url = urlencode('//'.$pageInfo['host'].'/index.php?c=article&id='. $_GET['id']);
+			echo '<div class="FBLike"><iframe title="Facebook" src=\'//www.facebook.com/plugins/like.php?href='.$fb_url.'&amp;layout=standard&amp;show_faces=true&amp;width=400&amp;action=like&amp;font=tahoma&amp;colorscheme='.$fbStyle.'&amp;height=32&amp;show_faces=false\'></iframe></div>';   
 		}			
 	}
 ?>

@@ -4,13 +4,16 @@ if ($showPanel)
 	if ( get_priv_controler('page', $_SESSION['mt']) && get_priv_pages($_GET['idp']) ) 
 	{	
 		$TEMPL_PATH = CMS_TEMPL . DS . 'register.php';
+		$pageTitle = $pageTitle ?? '';
 		$pageTitle .= $TXT_menu_register;
+
+		$_GET['action'] = $_GET['action'] ?? '';
 		
 		$res = new resClass;
 		$showList = true;
 		
 		// Dla articles
-		if ($_GET['id'])
+		if (isset($_GET['id']))
 		{
 			$crumbpath[] = array ('name' => $TXT_menu_register, 'url' => $PHP_SELF . '?c=' . $_GET['c'].'&amp;id=' . $_GET['id'] . '&amp;idp=' . $_GET['idp']);
 			
@@ -80,7 +83,7 @@ if ($showPanel)
 			if ( $numRows > 0)	
 			{		
 				$message .= show_msg ('msg', $MSG_del);
-				monitor( $_SESSION['userData']['UID'], $MON_register_del . $articleName , get_ip() );
+				monitor( $_SESSION['userData']['UID'], ($MON_register_del ?? '') . $articleName , get_ip() );
 			}
 		}
 		

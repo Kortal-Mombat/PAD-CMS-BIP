@@ -1,4 +1,8 @@
 <?php
+	if (!class_exists('resClass')) {
+		header('Location: /error-400');
+		exit;
+	}
 	$res = new resClass;
 
 	$sql = "SELECT * FROM `" . $dbTables['menu_types'] . "` WHERE (`lang` = ?) AND (active ='1')";

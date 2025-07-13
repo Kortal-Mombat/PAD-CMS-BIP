@@ -5,7 +5,17 @@ ini_set('session.use_trans_sid', false);
 
 // error_reporting(E_ALL);
 
-session_start();
+if (isset($_COOKIE[session_name()])) {
+    $sid = $_COOKIE[session_name()];
+    if (!preg_match('/^[a-zA-Z0-9,-]{1,128}$/', $sid)) {
+        // Nieprawidłowy identyfikator — usuń ciasteczko
+        setcookie(session_name(), '', time() - 3600, '/');
+        unset($_COOKIE[session_name()]);
+    }
+}
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 header('Content-Type: text/html; charset=utf-8');
 
@@ -40,6 +50,10 @@ if ( $outSettings['activeWww'] == 'tak')
 }
 else
 {
+	$_SESSION['style'] = $_SESSION['style'] ?? '';
+	$_GET['c'] = $_GET['c'] ?? '';
+	$_GET['print'] = $_GET['print'] ?? '';
+	$_GET['pdf'] = $_GET['pdf'] ?? '';
 	/**
 	 * powiekszanie czcionki
 	 */
@@ -56,7 +70,7 @@ else
 	switch ($_GET['c']) {
 	
 		case 'mobile' :
-			if ($_GET['action'] == 'off') {
+			if (isset($_GET['action']) && $_GET['action'] == 'off') {
 				unset($_SESSION['mobileVersion'], $mobileVersion);
 			} else {
 				$_SESSION['mobileVersion'] = 1;

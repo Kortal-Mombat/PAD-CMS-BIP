@@ -3,6 +3,9 @@ if ($showPanel)
 {
 	if (get_priv_controler($_GET['c']))
 	{	
+		$pageTitle = $pageTitle ?? '';
+		$_GET['action'] = $_GET['action'] ?? '';
+		
 		$TEMPL_PATH = CMS_TEMPL . DS . 'monitor.php';
 		$pageTitle .= $TXT_menu_mon;
 		

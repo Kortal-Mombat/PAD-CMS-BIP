@@ -1,6 +1,6 @@
-<h2><? echo $pageName; ?></h2>
+<h2><?= $pageName; ?></h2>
 
-<?
+<?php
 	foreach ($templateConfig as $k => $v)
 	{
 		echo '<div><strong>'.$k.'</strong>: '.$v.'</div>';

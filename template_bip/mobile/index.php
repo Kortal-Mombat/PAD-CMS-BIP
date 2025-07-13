@@ -1,4 +1,7 @@
 <?php
+	if (!defined('CMS_TEMPL')) {
+		exit();
+	}
     include_once ( CMS_TEMPL . DS . 'header.php');		
 
     include_once ( CMS_TEMPL . DS . 'top.php');
@@ -37,7 +40,9 @@
                      
 	<div id="content_txt">
 	    <?php
-                include_once ( $TEMPL_PATH );	
+				if (isset($TEMPL_PATH)) {
+					include_once ( $TEMPL_PATH );	
+				}
             ?>
 	</div>
             

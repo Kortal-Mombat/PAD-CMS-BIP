@@ -1,4 +1,4 @@
-<?
+<?php
 	$TEMPL_PATH = CMS_TEMPL . DS . 'sitemap.php';
 	
 	$pageName = 'Mapa strony';

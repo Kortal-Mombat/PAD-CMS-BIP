@@ -1,4 +1,6 @@
 <?php
+$_POST['data_utw'] = $_POST['data_utw'] ?? date("Y-m-d H:i:s");
+$_POST['data_publ'] = $_POST['data_publ'] ?? date("Y-m-d H:i:s");
 /**
  * Sprawdzenie wersji php oraz czy usunieto instalke
  */
@@ -41,6 +43,8 @@ function add_to_register ($id_art, $page_type)
     global $dbTables;
     $res = new resClass;
 		
+	$_POST['save_opis_zm'] = $_POST['save_opis_zm'] ?? '';
+	
     if ($_POST['save_opis_zm']=='on' && trim($_POST['opis_zm'])!='')
     {
 		$sql = "INSERT INTO `" . $dbTables['register'] . "` VALUES ('', ?, ?, '', ?, ?, ?, ?, ?, ?)";
@@ -423,6 +427,10 @@ function get_menu_tree ($menutype, $ref = 0, $numline = 0, $sitemap = '', $first
 {
     global $dbTables, $lang, $TXT, $date, $depth, $page, $_GET, $templateConfig;
 
+	$_GET['id'] = $_GET['id'] ?? 0;
+	$_GET['c'] = $_GET['c'] ?? '';
+	$page['id'] = $page['id'] ?? 0;
+
     $res = new resClass;
 
     $sql = "SELECT * FROM `" . $dbTables['pages'] . "` WHERE (`menutype` = ?) AND (`ref` = ?) AND (`lang` = ?) AND (active ='1') ORDER BY pos";
@@ -539,7 +547,10 @@ function get_menu_tree ($menutype, $ref = 0, $numline = 0, $sitemap = '', $first
 		
 		$selected = '';
 				
-		if ( (($_GET['id'] == $row['id']) && $_GET['c'] == 'page') || (($page['id'] == $row['id']) && $_GET['c'] == 'article'))
+		if ( 
+			(($_GET['id'] == $row['id']) && $_GET['c'] == 'page') || 
+			(($page['id'] == $row['id']) && $_GET['c'] == 'article')
+		)
 		{
 		    $depth = $numline;
 		   
@@ -769,12 +780,16 @@ function check_login_user()
 		$sessID = $tmp[1];
 
 	    // porownanie zapisanego numeru sesji w monitorze bipu z zapamietanym w sesji
-		$sql = "SELECT * FROM `" . str_replace('_', '_bip_', $dbTables['monitor']) . "` WHERE (`id_user` = ?) AND (`action` LIKE 'BIP - Zalogowanie użytkownika==%') ORDER BY date DESC LIMIT 1";
+		$sql = "SELECT * FROM `" . $dbTables['monitor'] . "` WHERE (`id_user` = ?) AND (`action` LIKE 'BIP - Zalogowanie użytkownika==%') ORDER BY date DESC LIMIT 1";
     	$params = array('id_user' => $uid);
 	    $res->bind_execute( $params, $sql );		
 		
-		$tmp_bip = explode('==', $res->data[0]['action']);
-		$sessIDbip = $tmp_bip[1];	
+		if ($res->numRows != 0) {
+			$tmp_bip = explode('==', $res->data[0]['action']);
+			$sessIDbip = $tmp_bip[1];	
+		}else {
+			$sessIDbip = '';
+		}
 				
 		if ($sessID == $_SESSION['userData']['SID'] || $sessIDbip == $_SESSION['userData']['SID'])
 		{
@@ -924,15 +939,19 @@ function clean_page_session()
  */				
 function conv_vars ($in , $tags = '') 
 {
-    $out = $in;
-    $out = strip_tags($out , $tags);
-
-    if (!get_magic_quotes_gpc())
-    {
-	$out = addslashes($out);
+    if (is_string($in)) {
+        $out = strip_tags($in, $tags);
+        $out = trim(htmlspecialchars($out, ENT_QUOTES, 'UTF-8'));
+        return $out;
+    } elseif (is_array($in)) {
+        $out = [];
+        foreach ($in as $key => $val) {
+            $out[$key] = conv_vars($val, $tags); // rekurencja
+        }
+        return $out;
+    } else {
+        return '';
     }
-    $out = trim(htmlspecialchars($out));
-    return $out;
 }
 	
 /** 
@@ -940,15 +959,23 @@ function conv_vars ($in , $tags = '')
  */		
 function clean($str, $length = 32)
 {
-    $trans = array("'" => "", "\\" => "", "\"" => "", ".."=>"");
+    $trans = ["'" => "", "\\" => "", "\"" => "", ".." => ""];
 
-    /*
-    if (strpos($str,' '))
-	    $clr = substr($str, 0, strpos($str,' '));
-    else
-	    $clr = $str;
-    */
+    // Jeśli to tablica — czyść każdy element rekurencyjnie
+    if (is_array($str)) {
+        $cleaned = [];
+        foreach ($str as $key => $value) {
+            $cleaned[$key] = clean($value, $length);
+        }
+        return $cleaned;
+    }
 
+    // Jeśli to nie string — konwertuj na string
+    if (!is_string($str)) {
+        $str = (string)$str;
+    }
+
+    // Właściwe czyszczenie
     $clr = trim(substr(strtr($str, $trans), 0, $length));
     return $clr;
 } 
@@ -1052,7 +1079,7 @@ function set_to_int( $str )
  */ 
 function url_redirect ($link)
 {
-    $url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/'. $link;
+    $url = '//' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/'. $link;
     return $url;
 }			
 	
@@ -1062,6 +1089,7 @@ function url_redirect ($link)
  */ 	
 function get_ip($onlyIP = '')
 {
+	$ip_f = '';
     if ($onlyIP == 'onlyIP')
     {
 	if (empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {

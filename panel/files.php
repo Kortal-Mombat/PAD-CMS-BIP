@@ -1,6 +1,8 @@
 <?php
 if ($showPanel)
 {
+	$_GET['action'] = $_GET['action'] ?? '';
+	$_GET['act'] = $_GET['act'] ?? '';
 	if (get_priv_controler('page') || get_priv_controler('dynamic_menu'))
 	{	
 		$TEMPL_PATH = CMS_TEMPL . DS . 'files.php';

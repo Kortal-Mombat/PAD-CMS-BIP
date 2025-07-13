@@ -5,7 +5,7 @@
             <a id="skip_tm" tabindex="-1"></a>
             <h2 class="tm">Menu podmiotowe</h2>
             <div class="menuBot"></div>
-            <?
+            <?php
                 get_menu_tree ('tm');
             ?>	
 		</div>

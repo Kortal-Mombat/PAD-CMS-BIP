@@ -1,5 +1,5 @@
 <?php
-if ($_COOKIE["login_timeout"] > 0)
+if (isset($_COOKIE["login_timeout"]) && $_COOKIE["login_timeout"] > 0)
 {
 	$TEMPL_PATH = CMS_TEMPL . DS . 'login_timeout.php';
 }
@@ -41,7 +41,11 @@ else
 				$sql = "SELECT * FROM `" . $dbTables['priv'] . "` WHERE (id_tbl='menu_panel') AND (`id_user`= ?) LIMIT 1";
 				$params = array ('id' => $r['id_user']);
 				$res->bind_execute( $params, $sql);
-				$id_rec = $res->data[0]['id_rec'];
+				if ($res->numRows != 0) {
+					$id_rec = $res->data[0]['id_rec'];
+				}else {
+					$id_rec = '0,';
+				}
 				$outMenuPriv = explode(',', $id_rec);	
 		
 				// na podstawie uprawnien do lewego menu wyluskanie kontrolerow
@@ -84,10 +88,10 @@ else
 		} 
 		else
 		{
-			monitor( $r['id_user'], $MON_err_login . ' (' . $TXT_login . ':' . $f_user . ')', get_ip() );	
+			monitor( 0, $MON_err_login . ' (' . $TXT_login . ':' . $f_user . ')', get_ip() );	
 			$message .= show_msg ('err', $ERR_login);
 			
-			$c = $_COOKIE["login_count"]+1;
+			$c = ($_COOKIE["login_count"] ?? 0)+1;
 			setcookie("login_count", $c);
 			
 			if ($c >= 6)

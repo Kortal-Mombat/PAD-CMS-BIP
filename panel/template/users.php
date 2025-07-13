@@ -1,34 +1,34 @@
-<h2><? echo $pageTitle; ?></h2>
+<h2><?= $pageTitle; ?></h2>
 
 <ul class="navMenu">
-	<li><a href="<? echo $PHP_SELF.'?c=' . $_GET['c']; ?>"><span class="icoShow"></span>Pokaż wszystkich</a></li>
-    <li><a href="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=add'; ?>"><span class="icoAdd"></span>Dodaj użytkownika</a></li>	
+	<li><a href="<?= $PHP_SELF.'?c=' . $_GET['c']; ?>"><span class="icoShow"></span>Pokaż wszystkich</a></li>
+    <li><a href="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=add'; ?>"><span class="icoAdd"></span>Dodaj użytkownika</a></li>	
 </ul>
 
 <div class="clear"></div>
 
-<?
+<?php
 	echo $message;
 
 	if ($showAddForm)
 	{
 		?>
-			<form method="post" class="formEdAdd" action="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=' . $_GET['action'] . '&amp;act=addPoz'; ?>" name="formAdd" enctype="multipart/form-data">
+			<form method="post" class="formEdAdd" action="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=' . $_GET['action'] . '&amp;act=addPoz'; ?>" name="formAdd" enctype="multipart/form-data">
 
 				<h3>Dodaj nowego użytkownika</h3>
 				
 				<div class="formWrap">
 					
 					<label for="name">* Imię i nazwisko: </label>
-					<input type="text" name="name" id="name" size="100" maxlength="250" value="<? echo $_POST['name']; ?>" aria-required="true"/><br/>
+					<input type="text" name="name" id="name" size="100" maxlength="250" value="<?= ($_POST['name'] ?? '') ?>" aria-required="true"/><br/>
 					
 					<label for="login">* Login: </label>
-					<input type="text" name="login" id="login" size="40" maxlength="32" value="<? echo $_POST['login']; ?>"  aria-required="true"/><br/>
+					<input type="text" name="login" id="login" size="40" maxlength="32" value="<?= ($_POST['login'] ?? '') ?>"  aria-required="true"/><br/>
 				
 					<label for="email">* Adres e-mail: </label>
-					<input type="text" name="email" id="email" size="40" value="<? echo $_POST['email']; ?>"  aria-required="true"/><br/>
+					<input type="text" name="email" id="email" size="40" value="<?= ($_POST['email'] ?? '') ?>"  aria-required="true"/><br/>
 					
-					<div class="txt_com" id="pass_info"><? echo $TXT_passwd_strong; ?></div>	
+					<div class="txt_com" id="pass_info"><?= $TXT_passwd_strong; ?></div>	
                     
 					<label for="passwd">* Hasło: </label>
 					<input type="password" name="passwd" id="passwd" onkeyup="testPassword(this.value, 'divStrongPassword', 'spanStrongPassword')" size="40" maxlength="32" value=""  aria-required="true" aria-describedby="pass_info"/>
@@ -51,29 +51,29 @@
 				
 				<input type="submit" value="Zapisz" class="butSave" name="save"/><input type="submit" value="Zapisz i dodaj kolejnego" class="butSaveAdd" name="saveAdd" />
 			</form>	
-		<?
+		<?php
 	}
 	
 	if ($showEditForm)
 	{
 		?>
-			<form method="post"  class="formEdAdd" action="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=' . $_GET['action'] . '&amp;act=editPoz&amp;id=' . $row['id_user']; ?>" name="formEd" enctype="multipart/form-data">
+			<form method="post"  class="formEdAdd" action="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=' . $_GET['action'] . '&amp;act=editPoz&amp;id=' . $row['id_user']; ?>" name="formEd" enctype="multipart/form-data">
 
 				<h3>Aktualizuj użytkownika</h3>
 				
 				<div class="formWrap">
 										
 					<label for="name">* Imię i nazwisko: </label>
-					<input type="text" name="name" id="name" size="80" maxlength="250" value="<? echo $row['name']; ?>" aria-required="true" /><br/>
+					<input type="text" name="name" id="name" size="80" maxlength="250" value="<?= $row['name']; ?>" aria-required="true" /><br/>
 					
 					<label for="login">* Login: </label>
-					<input type="text" name="login" id="login" size="40" maxlength="32" value="<? echo $row['login']; ?>" aria-required="true" /><br/>
+					<input type="text" name="login" id="login" size="40" maxlength="32" value="<?= $row['login']; ?>" aria-required="true" /><br/>
 
 					<label for="email">* Adres e-mail: </label>
-					<input type="text" name="email" id="email" size="40" value="<? echo $row['email']; ?>"  aria-required="true"/><br/>
+					<input type="text" name="email" id="email" size="40" value="<?= $row['email']; ?>"  aria-required="true"/><br/>
 
 					<div class="txt_com" id="pass_info">
-						- <? echo $TXT_passwd_strong; ?><br/>
+						- <?= $TXT_passwd_strong; ?><br/>
                         - Pozostaw poniższe pola puste jeśli nie zmieniasz hasła.
                     </div>	
                     				
@@ -92,7 +92,7 @@
 					<span></span>
 					<br/>
 					
-					<input type="checkbox" name="active" id="active" class="noformat"  <? if ($row['active']==1) { echo ' checked="checked" '; } ?> />
+					<input type="checkbox" name="active" id="active" class="noformat"  <?php if ($row['active']==1) { echo ' checked="checked" '; } ?> />
                     <label for="active" class="checkInput">Ustaw jako aktywny</label><br/>
                                         
 			
@@ -100,7 +100,7 @@
 				
 				<input type="submit" value="Zapisz" class="butSave" name="save"/>
 			</form>	
-		<?
+		<?php
 	}	
 	
 	if ($showList)
@@ -108,7 +108,7 @@
 	?>
 
 	<table width="100%">
-		<caption>Ilość pozycji: <? echo $numRows; ?></caption>
+		<caption>Ilość pozycji: <?= $numRows; ?></caption>
 		<tr><th width="5%">L.p</th><th width="20%">Użytkownik</th><th width="15%">Login</th><th width="15%">E-mail</th><th width="10%">Typ</th><th width="15%">Ostatnia wizyta</th><th width="7%">Aktywny</th><th width="13%">Akcja</th></tr>
 		<?php
 			$n = 0;
@@ -169,6 +169,6 @@
 			    include_once(CMS_TEMPL . DS . 'legend_icons.php');
 			    ?>
 			</div>	
-    <?
+    <?php
     }
 ?>

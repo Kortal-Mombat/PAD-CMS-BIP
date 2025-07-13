@@ -2,10 +2,10 @@
 if ($showPanel)
 {
     // potrzebne do zapamietania aktualnej pozycji w menu
-    if ($_GET['mp'] != ''){
+    if (isset($_GET['mp']) && $_GET['mp'] != ''){
 		$_SESSION['mp'] = $_GET['mp'];
     }
-    if ($_GET['c'] == '')
+    if (isset($_GET['c']) && $_GET['c'] == '')
     {
 		$_SESSION['mp'] = 1;
     }

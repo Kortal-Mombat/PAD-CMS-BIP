@@ -22,12 +22,12 @@
 	// Tablica zmiennych do sprawdzenia czy sa numeryczne
 	$varToClean = array('UID', 'id', 'idf', 's');
 	foreach ($varToClean as $k => $v) {
-		if ($_GET[$v]) {
+		if (isset($_GET[$v]) && $_GET[$v]) {
 			$_GET[$v] = clean_id($_GET[$v]);
 		}
 	} 		
 
-	if ($_GET['s'] > 0)
+	if (isset($_GET['s']) && $_GET['s'] > 0)
 	{
 		$sql_start = $cmsConfig['limit'] * $_GET['s'] - $cmsConfig['limit'];
 	}
@@ -71,7 +71,13 @@
 	setCSS('style.css', $css);
 	
 	$res = new resClass;
-
+	
+	// Modyfikacja dostosowanie do nowej wersji bazy danych MySQL
+	$sql = "SET SESSION sql_mode = ?";
+	$params = array ('lang' => $lang);
+	$params = array ('lang' => '');
+	$res->bind_execute( $params, $sql);
+	
 	$sql = "SELECT * FROM `" . $dbTables['settings'] . "` WHERE (`lang`= ?) ORDER BY id_set";
 	$params = array ('lang' => $lang);
 	$res->bind_execute( $params, $sql);

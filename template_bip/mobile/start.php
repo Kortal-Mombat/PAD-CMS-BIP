@@ -6,7 +6,7 @@ echo $message;
 /*
  * Tekst powitalny
  */
-if ($showWelcome)
+if (isset($showWelcome))
 {
     ?>
     <div id="welcome"><?php echo $txtWelcome?></div>
@@ -16,7 +16,7 @@ if ($showWelcome)
 /*
  * Tablica
  */
-if ($showBoard)
+if (isset($showBoard))
 {
 ?>
 

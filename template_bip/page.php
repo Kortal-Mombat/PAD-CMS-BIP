@@ -1,10 +1,13 @@
-<?
-	echo '<h2>' . $pageName .'</h2>';
-	
+<?php
+	if (!isset($showPage) && !isset($showLoginForm)) {
+		header('Location: /error-404');
+		exit;
+	}
+	echo '<h2>' . ($pageName ?? '') .'</h2>';
 	?>
 	<ul class="printers">
-    	<li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;print=1" target="_blank" ><img src="<?php echo $templateDir; ?>/images/butPrint.png" alt="<?php echo $TXT['print'];?>"/></a></li>
-        <li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;pdf=1" target="_blank" ><img src="<?php echo $templateDir; ?>/images/butPDF.png" alt="<?php echo $TXT['print_pdf'];?>"/></a></li>
+    	<li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;print=1" target="_blank" ><img src="/<?php echo $templateDir; ?>/images/butPrint.png" alt="<?php echo $TXT['print'];?>"/></a></li>
+        <li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;pdf=1" target="_blank" ><img src="/<?php echo $templateDir; ?>/images/butPDF.png" alt="<?php echo $TXT['print_pdf'];?>"/></a></li>
     </ul>
 	<?php
 		
@@ -17,13 +20,15 @@
 		include( CMS_TEMPL . DS . 'form_login.php');
 	}
 	
-	if ($showPage)
+	if (isset($showPage) && $showPage)
 	{
-		if ($numSubmenu > 0)
+		if (($numSubmenu ?? 0) > 0)
 		{
 			echo '<ul class="submenu">';
 			foreach ($submenu as $sm)
 			{
+				$url_title = '';
+				$target = '';
 				if (trim($sm['ext_url']) != '')
 				{
 					if ($sm['new_window'] == '1')
@@ -50,7 +55,7 @@
 			echo '</ul>';
 		}
 				
-		echo $rowPage['text'];
+		echo ($rowPage['text'] ?? '');
 		
 		// Wypisanie artykulow
 		if ($numArticles > 0)
@@ -181,27 +186,29 @@
 			echo '</div>';			
 		}
 		
-		if ($showContactForm)
+		if (isset($showContactForm) && $showContactForm)
 		{
 			include ('form_contact.php');
 		}		
 		
-		?>
-	
-		<div id="metryka" class="infoWrapper">
-			<h3 class="infoHead"><a href="#"><span class="hide">Rozwiń </span>Metryka</a></h3>
-			<table>
-				<tr><th>Podmiot udostępniający informację:</th><td><?php echo $rowPage['podmiot']; ?></td></tr>
-				<tr><th>Data utworzenia:</th><td><?php echo $rowPage['show_date']; ?></td></tr>
-				<tr><th>Data publikacji:</th><td><?php echo $rowPage['show_date']; ?></td></tr>
-				<tr><th>Osoba sporządzająca dokument:</th><td><?php echo $rowPage['author']; ?></td></tr>
-				<tr><th>Osoba wprowadzająca dokument:</th><td><?php echo $rowPage['wprowadzil']; ?></td></tr>
-				<tr><th>Liczba odwiedzin:</th><td><?php echo $rowPage['counter']; ?></td></tr>
-			</table>
-		</div>
+		if(isset($rowPage)) {
+			?>
 		
-		<?php
-		if ($numRegister > 0)
+			<div id="metryka" class="infoWrapper">
+				<h3 class="infoHead"><a href="#"><span class="hide">Rozwiń </span>Metryka</a></h3>
+				<table>
+					<tr><th>Podmiot udostępniający informację:</th><td><?php echo $rowPage['podmiot']; ?></td></tr>
+					<tr><th>Data utworzenia:</th><td><?php echo $rowPage['show_date']; ?></td></tr>
+					<tr><th>Data publikacji:</th><td><?php echo $rowPage['show_date']; ?></td></tr>
+					<tr><th>Osoba sporządzająca dokument:</th><td><?php echo $rowPage['author']; ?></td></tr>
+					<tr><th>Osoba wprowadzająca dokument:</th><td><?php echo $rowPage['wprowadzil']; ?></td></tr>
+					<tr><th>Liczba odwiedzin:</th><td><?php echo $rowPage['counter']; ?></td></tr>
+				</table>
+			</div>
+			
+			<?php
+		}
+		if (($numRegister ?? 0) > 0)
 		{
 		?>
 		<div id="histZmian" class="infoWrapper">
@@ -231,7 +238,7 @@
 		
 		if ($outSettings['pluginFB'] == 'włącz')
 		{
-			$fb_url = urlencode('http://'.$pageInfo['host'].'/index.php?c=page&id='. $_GET['id']);
+			$fb_url = urlencode('//'.$pageInfo['host'].'/index.php?c=page&id='. $_GET['id']);
 			echo '<div class="FBLike"><iframe title="Facebook" src=\'http://www.facebook.com/plugins/like.php?href='.$fb_url.'&amp;layout=standard&amp;show_faces=true&amp;width=400&amp;action=like&amp;font=tahoma&amp;colorscheme='.$fbStyle.'&amp;height=32&amp;show_faces=false\'></iframe></div>';   
 		}	
 	}

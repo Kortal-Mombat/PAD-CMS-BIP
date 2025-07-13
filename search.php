@@ -1,4 +1,9 @@
-<?
+<?php
+	if (!class_exists('resClass')) {
+		header('Location: /error-400');
+		exit;
+	}
+
 	$res = new resClass;
 	
 	$TEMPL_PATH = CMS_TEMPL . DS . 'search.php';
@@ -6,12 +11,16 @@
 	$pageName = 'Wyszukiwarka';
 	$pageTitle = $pageName . ' - ' . $pageTitle;
 		
+	$_GET['kword'] = $_GET['kword'] ?? ''; 
 	$crumbpath[] = array ('name' => 'Wyszukiwarka', 'url' => 'index.php?c=search&amp;kword=' . $_GET['kword']);
 	
 	setCSS('jquery.ui.theme.css', $css);	
 	setCSS('jquery.ui.datepicker.css', $css);
 	setJS('jquery-ui.custom.min.js', $js);
 	setJS('jquery.ui.datepicker-pl.js', $js);	
+	
+	$_GET['kword'] = $_GET['kword'] ?? '';
+	$_GET['action'] = $_GET['action'] ?? '';
 	
 	if ($_GET['action'] == 'search' || $_GET['action'] == 'searchAdv')
 	{
@@ -38,11 +47,18 @@
 					
 				$sql_txt = "((name LIKE '%".$_GET['kword']."%') OR (text LIKE '%".$_GET['kword']."%') OR (lead_text LIKE '%".$_GET['kword']."%') OR (podmiot LIKE '%".$_GET['kword']."%')) AND ";
 
+				$sql_date_od = '';
+				$sql_date_do = '';
+				$sql_wpr = '';
+				$sql_author = '';
+
 				if($_GET['od'])
 					$sql_date_od = "(create_date>='".$_GET['od']."') AND ";	
+					$sql_date_od_files = "(data>='".$_GET['od']."') AND ";	
 					
 				if($_GET['do'])
 					$sql_date_do = "(create_date<='".$_GET['do']."') AND ";			
+					$sql_date_do_files = "(data<='".$_GET['do']."') AND ";			
 
 				if($_GET['os_wpr'])
 					$sql_wpr = "(wprowadzil LIKE '%".$_GET['os_wpr']."%') AND ";	
@@ -66,7 +82,7 @@
 				$sqlArticle = "SELECT `" . $dbTables['art_to_pages'] . "`.* , `" . $dbTables['articles'] . "`.* 
 						FROM `" . $dbTables['art_to_pages'] . "` LEFT JOIN `" . $dbTables['articles'] . "` 
 						ON `" . $dbTables['art_to_pages'] . "`.id_art=`" . $dbTables['articles'] . "`.id_art
-						WHERE (active = '1') AND ".$sql_txt . $sql_date . $sql_wpr . $sql_author . "
+						WHERE (active = '1') AND ".$sql_txt . $sql_date_od . $sql_date_do . $sql_wpr . $sql_author . "
 						( (`" . $dbTables['articles'] . "`.start_date <= '".$date."' AND `" . $dbTables['articles'] . "`.stop_date >= '".$date."') OR ( `" . $dbTables['articles'] . "`.start_date = '0000-00-00' AND `" . $dbTables['articles'] . "`.stop_date = '0000-00-00') )
 						ORDER BY `" . $dbTables['art_to_pages'] . "`.pos";	
 						
@@ -75,7 +91,7 @@
 				/**
 				 * Pobranie files
 				 */	
-				$sqlFiles = "SELECT * FROM `" . $dbTables['files'] . "` WHERE ((name LIKE ?) OR (keywords LIKE ?)) AND ".$sql_date." (active = '1') ORDER BY pos";	
+				$sqlFiles = "SELECT * FROM `" . $dbTables['files'] . "` WHERE ((name LIKE ?) OR (keywords LIKE ?)) AND ".$sql_date_od_files . $sql_date_do_files." (active = '1') ORDER BY pos";	
 				$paramsFiles = array( 
 					'name' => '%' . $_GET['kword'] . '%',
 					'keywords' => '%' . $_GET['kword'] . '%'
@@ -238,7 +254,7 @@
 				$searchArray[$i]['id'] = $row['id_file'];
 				$searchArray[$i]['name'] = $name;
 				$searchArray[$i]['lead'] = '';
-				$searchArray[$i]['url'] = '<a href="'. $url .'" ' . $url_title . $target . '>'. $row['name'] . $protect . ' <span>('.$size.')</span></a>';
+				$searchArray[$i]['url'] = '<a href="'. $url .'" ' . ($url_title ?? ''). $target . '>'. $row['name'] . ($protect ?? ''). ' <span>('.$size.')</span></a>';
 				$i++;
 			}
 			

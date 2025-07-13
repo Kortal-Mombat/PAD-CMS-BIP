@@ -1,6 +1,25 @@
 <?php
 if ($showPanel)
 {	
+	
+	$_GET['action'] = $_GET['action'] ?? '';
+	$_GET['id'] = $_GET['id'] ?? '';
+	$_GET['act'] = $_GET['act'] ?? '';
+	$_GET['mt'] = $_GET['mt'] ?? '';
+	$_POST['attrib'] = $_POST['attrib'] ?? '';
+	$_POST['new_window'] = $_POST['new_window'] ?? '';
+	$_POST['view'] = $_POST['view'] ?? '';
+	$_POST['lead_text'] = $_POST['lead_text'] ?? '';
+	$_POST['protected'] = $_POST['protected'] ?? 0;
+	$_POST['ingallery'] = $_POST['ingallery'] ?? 0;
+	$_POST['show_date'] = $_POST['show_date'] ?? date("Y-m-d H:i:s");
+	$_POST['start_date'] = $_POST['start_date'] ?? '0000-00-00 00:00:00';
+	$_POST['stop_date'] = $_POST['stop_date'] ?? '0000-00-00 00:00:00';
+	$_SESSION['mt'] = $_SESSION['mt'] ?? '';
+	$PHP_SELF = $_SERVER['PHP_SELF'];
+	$pageTitle = $pageTitle ?? '';
+	$err = $err ?? '';
+
     if ($_GET['mt'])	
     { 
 		$_SESSION['mt'] = $_GET['mt'];
@@ -15,7 +34,6 @@ if ($showPanel)
 	if ( $_SESSION['mt'] == 'mg') {
 		$depthTree = 1;
 	}	
-	
 
     if (get_priv_controler($_GET['c'], $_SESSION['mt']))
     {
@@ -33,7 +51,7 @@ if ($showPanel)
 	    }
 	}
 
-	if (is_array($_POST['attrib']))
+	if (isset($_POST['attrib']) && is_array($_POST['attrib']))
 	{			
 	    // wyczyszczenie meta z niepotrzebnych znaczkow
 	    foreach ($_POST['attrib'] as $k => $v)
@@ -53,7 +71,7 @@ if ($showPanel)
 				
 	// lista akcji dla ktorych zaladowac dodatkowe css
 	$actionCSSList = array ('edit', 'add');
-	if (in_array($_GET['action'],$actionCSSList))	
+	if (isset($_GET['action']) && in_array($_GET['action'],$actionCSSList))	
 	{
 	    setCSS('jquery.ui.theme.css', $css);
 	    setCSS('jquery.ui.tabs.css', $css);
@@ -68,9 +86,11 @@ if ($showPanel)
 	    'lang' => $lang
 	);
 	$res->bind_execute( $params, $sql);
-	$menuType = $res->data[0];	
-				
-	$pageTitle .= $menuType['name'];
+	if ($res->numRows != 0) {
+		$menuType = $res->data[0];	
+					
+		$pageTitle .= $menuType['name'];
+	}
 		
 	$crumbpath[] = array ('name' => $pageTitle, 'url' => $PHP_SELF . '?c=' . $_GET['c']);
 
@@ -256,15 +276,15 @@ if ($showPanel)
 			{
 				$modified_date = date("Y-m-d H:i:s");	
 						
-				if (!$_POST['name']){
+				if (!isset($_POST['name'])){
 					$err .= show_msg ('err', $ERR_title);
 				}
 
-				if (!$_POST['autor']){
+				if (!isset($_POST['autor'])){
 					$err .= show_msg ('err', 'Wpisz osobę sporządzającą dokument w zakładce Ustawienia.');
 				}
 
-				if (!$_POST['podmiot']){
+				if (!isset($_POST['podmiot'])){
 					$err .= show_msg ('err', 'Wpisz nazwę podmiotu udostępniającego informację w zakładce Ustawienia.');
 				}
 				
@@ -272,6 +292,7 @@ if ($showPanel)
 				
 				if (!$err)
 				{
+					$add_sql = $add_sql ?? '';
 					//debug($_POST['gr']);
 					if ($_POST['gr'] >= 0 && $_POST['gr'] != $_GET['id'])
 					{
@@ -312,7 +333,7 @@ if ($showPanel)
 		
 						add_to_register ($_GET['id'], $_SESSION['type_to_files']);		
 
-						if ($_POST['saveEdit']) {
+						if (isset($_POST['saveEdit'])) {
 							$showEditForm = false;
 							$showList = true;
 						}						
@@ -1001,6 +1022,8 @@ if ($showPanel)
 		{
 			global $dbTables, $lang, $MSG_del_confirm, $menuArr, $shortDate;
 			
+			$PHP_SELF = $_SERVER['PHP_SELF'];
+
 			// max ilosc zagniezdzen
 			if ( $_SESSION['mt'] == 'tm') {
 				$nestNum = 2;
@@ -1055,7 +1078,7 @@ if ($showPanel)
 							$liClass = ' menTLiLast';
 						}
 						
-						if ( $numline == $nestNum){
+						if ( $numline == ($nestNum ?? 0)){
 							$liClass .= ' no-nest';
 						}
 						

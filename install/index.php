@@ -209,7 +209,7 @@
 				{
 					$res = new resClass;						
 					
-					$in = array ('http://');
+					$in = array ('http://','https://');
 					$out = array ('');							
 					
 					$sql = "UPDATE `" . $dbTables['settings'] . "` SET `attrib`= 

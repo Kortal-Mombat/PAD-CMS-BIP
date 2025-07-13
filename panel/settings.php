@@ -38,7 +38,7 @@ if ($showPanel)
 		/**
 		 * Edycja
 		 */
-		if($_POST['save'])
+		if(isset($_POST['save']))
 		{
 			$numRows = 0;
 			foreach($_POST as $key => $value)
@@ -51,7 +51,8 @@ if ($showPanel)
 					
 					if ($key == 'host')
 					{
-						$value = str_replace('http://', '', $value);
+						$replace = ['http://','https://'];
+						$value = str_replace($replace, '', $value);
 					}
 					
 					$sql = "UPDATE `" . $dbTables['settings'] . "` SET attrib = ? WHERE (`id_name` = ?) LIMIT 1";	

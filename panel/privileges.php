@@ -10,6 +10,9 @@ if ($showPanel)
     } 
 	else
     {
+		$pageTitle = $pageTitle ?? '';
+		$_GET['action'] = $_GET['action'] ?? '';
+		
 		$TEMPL_PATH = CMS_TEMPL . DS . 'privileges.php';
 	
 		$res = new resClass;
@@ -35,6 +38,7 @@ if ($showPanel)
 			$res->bind_execute( $params, $sql);
 	
 			// grupy i podgrupy
+			$recordsPage = '';
 			foreach($_POST as $k => $v) 
 			{
 				if (substr($k,0,3)=='pg_')
@@ -50,6 +54,7 @@ if ($showPanel)
 			$res->bind_execute( $params, $sql);
 				
 			// menu panelu 
+			$recordsMenu = '';
 			foreach($_POST as $k => $v) 
 			{
 				if (substr($k,0,3)=='mp_')
@@ -65,6 +70,7 @@ if ($showPanel)
 			$res->bind_execute( $params, $sql);
 	
 			// menu dynamiczne 
+			$recordsMenuDyn = '';
 			foreach($_POST as $k => $v) 
 			{
 				if (substr($k,0,4)=='mpd_')
@@ -87,23 +93,32 @@ if ($showPanel)
 		$sql = "SELECT * FROM `" . $dbTables['priv'] . "` WHERE (id_tbl='menu_panel') AND (`id_user`= ?) LIMIT 1";
 		$params = array ('id' => $_GET['id']);
 		$res->bind_execute( $params, $sql);
-		$row = $res->data[0];				
-		$mp_idrec = explode(',',$row['id_rec']);
-		sort($mp_idrec);
+		$mp_idrec = [];
+		if (($res->numRows != 0)) {
+			$row = $res->data[0];				
+			$mp_idrec = explode(',',$row['id_rec']);
+			sort($mp_idrec);
+		}
 	
 		$sql = "SELECT * FROM `" . $dbTables['priv'] . "` WHERE (id_tbl='menu_dyn') AND (`id_user`= ?) LIMIT 1";
 		$params = array ('id' => $_GET['id']);
 		$res->bind_execute( $params, $sql);
-		$row = $res->data[0];				
-		$mpd_idrec = explode(',',$row['id_rec']);
-		sort($mpd_idrec);
+		$mpd_idrec = [];
+		if (($res->numRows != 0)) {
+			$row = $res->data[0];				
+			$mpd_idrec = explode(',',$row['id_rec']);
+			sort($mpd_idrec);
+		}
 			
 		$sql = "SELECT * FROM `" . $dbTables['priv'] . "` WHERE (id_tbl='pages') AND (`id_user`= ?) LIMIT 1";
 		$params = array ('id' => $_GET['id']);
 		$res->bind_execute( $params, $sql);
-		$row = $res->data[0];				
-		$page_idrec = explode(',',$row['id_rec']);
-		sort($page_idrec);
+		$page_idrec = [];
+		if (($res->numRows != 0)) {
+			$row = $res->data[0];				
+			$page_idrec = explode(',',$row['id_rec']);
+			sort($page_idrec);
+		}
 			
 		// funkcja rekurencyjna wyswietlajaca checkboxy do uprawnien uzytkowników
 		function show_priv_checkbox($count, $mt, $ref, $page_idrec)
@@ -126,7 +141,7 @@ if ($showPanel)
 					$checked = ''; 
 					for ($j=1; $j<=count($page_idrec); $j++)
 					{ 	 
-						if ($row['id'] == $page_idrec[$j])
+						if (isset($page_idrec[$j]) && ($row['id'] == $page_idrec[$j]))
 							$checked = 'checked="checked"';
 					}	
 			

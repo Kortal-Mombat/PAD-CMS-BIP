@@ -1,12 +1,12 @@
 <?php
-	include("mpdf/mpdf.php");
+	require_once("TCPDF/tcpdf.php");
 	
 	$head = '
 		<html lang="pl">
 		<head>
 		<style type="text/css">
-			body {background: #fff; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size:12px; color: #444; margin: 0; padding: 0}
-			input, select, textarea {font-size: 12px; font-family: Tahoma, Arial, Helvetica, sans-serif;}
+			body {background: #fff; font-size:12px; color: #444; margin: 0; padding: 0}
+			input, select, textarea {font-size: 12px;}
 			
 			h1, h2, h3, h4, h5, h6 { font-weight:bold; }
 			h1 { color:#111; }
@@ -27,8 +27,11 @@
 		
 		</head>
 		<body>';
-	
-	$html .= '<h1>' . $pageName . '</h1>';
+
+	$pageName = $pageName ?? 'PDF';
+	$txt = $txt ?? '';
+
+	$html = ($html ?? '').'<div class="header">'.$pageInfo['name'].'</div>'.'<h1>' . $pageName . '</h1>';
 		
 	switch ($_GET['c']) {
 		case 'txt' : 
@@ -38,7 +41,8 @@
 		case 'page' :
 			if ($showPage)
 			{		
-				$row['text'] = str_replace ('src="http://'.$pageInfo['host'].'/', 'src="', $row['text']);
+				$replace = ['src="http://'.$pageInfo['host'].'/','src="https://'.$pageInfo['host'].'/'];
+				$row['text'] = str_replace ($replace, 'src="', $row['text']);
 				$txt = $row['text'];	
 			}
 		break;
@@ -59,17 +63,46 @@
 	
 	
 	
-	$mpdf=new mPDF('','A4','','',20,20,15,10,0,10); 
+	// $mpdf=new mPDF('','A4','','',20,20,15,10,0,10); 
 	
-	$mpdf->SetHTMLHeader('<div class="header">'.$pageInfo['name'].'</div>');
+	// $mpdf->SetHTMLHeader('<div class="header">'.$pageInfo['name'].'</div>');
 	
-	$mpdf->AddPage('P','','','','',20,20,35,30);
+	// $mpdf->AddPage('P','','','','',20,20,35,30);
 	
-	$mpdf->SetHTMLFooter('<div class="footer"><p class="fr">{PAGENO}</p></div>');
+	// $mpdf->SetHTMLFooter('<div class="footer"><p class="fr">{PAGENO}</p></div>');
 	
-	$mpdf->WriteHTML($head . $html . $foot);
+	// $mpdf->WriteHTML($head . $html . $foot);
 	
+	// $filename =  trans_url_name($pageName . '.pdf');
+	
+	// $mpdf->Output($filename, "I");
+
+	// Tworzenie nowego obiektu TCPDF
+	$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+	// Ustawienia strony
+	$pdf->SetCreator(PDF_CREATOR);
+	$pdf->SetAuthor($pageInfo['name']);
+	$pdf->SetTitle($pageInfo['name']);
+	$pdf->SetSubject($pageInfo['name']);
+
+	// Usunięcie nagłówka i pustej kreski
+	$pdf->setPrintHeader(false);
+
+	// Ustawienia czcionki
+	$pdf->setHeaderFont(Array('dejavusans', '', 10, '', false));
+	$pdf->setFooterFont(Array('dejavusans', '', 8, '', false));
+	$pdf->SetFont('dejavusans', '', 10, '', false);
+
+	// Dodanie nowej strony
+	$pdf->AddPage();
+
+	// Treść PDF
+	$pdf->writeHTML($head . $html . $foot, true, false, true, false, '');
+
+	// Generowanie PDF
 	$filename =  trans_url_name($pageName . '.pdf');
-	
-	$mpdf->Output($filename, "I");
+	$pdf->Output($filename, 'I');
+
+
 ?>

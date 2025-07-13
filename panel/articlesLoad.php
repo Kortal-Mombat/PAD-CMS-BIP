@@ -1,4 +1,4 @@
-<?
+<?php
 	ini_set('url_rewriter.tags', '');
 	ini_set('session.use_trans_sid', false); 
 	
@@ -64,10 +64,10 @@
 ?>
 <div id="articleList">
 	    <table width="100%" id="rowList">
-        <caption>Ilość pozycji: <? echo $numRows; ?></caption>
+        <caption>Ilość pozycji: <?= $numRows; ?></caption>
         <tr><th width="5%">L.p</th><th width="70%">Tytuł</th><th width="15%">Pokazać</th><th width="10%">Akcja</th></tr>
         <tbody>
-        <?
+        <?php
             
             $pole = $i = 0;
             foreach ($outRow as $row)

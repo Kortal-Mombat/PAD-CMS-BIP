@@ -2,7 +2,7 @@
 	echo $message;
 ?>
 
-<h2><? echo $pageTitle . ' <span class="cmsVer">(wersja: ' . $cms_version . ')</span>'; ?></h2>
+<h2><?= $pageTitle . ' <span class="cmsVer">(wersja: ' . $cms_version . ')</span>'; ?></h2>
     
 <div id="start">
     <div id="startUser" class="startDiv">
@@ -10,7 +10,11 @@
 	echo $TXT_user . '<br />';
 	echo '<span class="userName">' . $_SESSION['userData']['name'] . '</span><br /><br />';
 	$last = explode(' ', $_SESSION['userData']['last_visit']);
-	$day = date('l', $last[0]);
+	if (is_numeric($last[0])) {
+		$day = date('l', $last[0]);
+	} else {
+		$day = date('l');
+	}
 	$date = $last[0];
 	echo $TXT_last_visit . ':<br /><span class="bolder sm">' . showHumanDate($_SESSION['userData']['last_visit']) . ', godz.' . substr($last[1], 0, -3).'</span>';
 	?>
@@ -37,6 +41,59 @@
             </ul>
         </li>
     </ul>
+    </div>
+
+    <div class="startInfo">
+		<h2>Historia zmian:</h2>
+		<ul>
+			<li>1.2.1.ak3 - 2025-07-13</li>
+				<ul>
+					<li>Poprawki bezpieczeństwa</li>
+					<li>Ujednolicenie stylu mobilnego</li>
+				</ul>
+			</li>
+			<li>1.2.1.ak2 - 2024-04-24</li>
+				<ul>
+					<li>Poprawki bezpieczeństwa</li>
+				</ul>
+			</li>
+			<li>1.2.1.ak1 - 2023-08-11</li>
+				<ul>
+					<li>Dostosowanie do PHP 8.2</li>
+					<li>Ujednolicenie przekierowań z http na https</li>
+					<li>Poprawki bezpieczeństwa</li>
+				</ul>
+			</li>
+			<li>1.2.1 - 2019-09-19</li>
+				<ul>
+					<li>Pominięcie sprawdzania rozszerzenia mysql w PHP</li>
+					<li>Usunięcie błędów spowodowanych wersją PHP 7.x</li>
+				</ul>
+			</li>
+			<li>1.2.0 - 2016-04-25</li>
+				<ul>
+					<li>Dodanie informacji pomocniczych do formularza instalacyjnego oraz dodanie wymaganych pól (e-mail)</li>
+					<li>Dodanie przypominania hasła użytkownika przy formularzu logowania do panelu administracyjnego</li>
+					<li>Dodanie licznika limitu czasu bezczynności użytkownika w panelu administracyjnym z możliwością przedłużenia</li>
+					<li>Dodanie numeru wersji CMS w panelu administracyjnym</li>
+					<li>Poprawa wyświetlania kolejności artykułów na stronie głównej</li>
+					<li>Poprawa licznika wejść</li>
+					<li>Poprawa literówek</li>
+					<li>Poprawa ukrywania podstron</li>
+					<li>Poprawa ankiety</li>
+					<li>Dodatkowe określenie wymaganych pól w panelu administracyjnym (WAI ARIA)</li>
+					<li>Aktualizacja edytora TinyMCE 4 - wersja 4.3.10</li>
+					<li>Dodanie w edytorze TinyMCE 4:</li>
+					<ul>
+						<li>Sprawdzanie pisowni</li>
+						<li>Wyświetlanie bloków HTML</li>
+						<li>Znajdź i zamień</li>
+						<li>Zakładka "Zaawansowane" w okienku wstawiania/edycji zdjęcia.</li>
+						<li>Przycisk zmiany języka dowolnego fragmentu tekstu oraz wyróżnienie go kolorem</li>
+					</ul>
+				</ul>
+			</li>
+		</ul>
     </div>
 </div>
 

@@ -42,19 +42,19 @@
 	
 	$("#file .butActive").click(function() { 
 		var file_id = $(this).attr('id').substr(2);
-		$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&idf='+file_id+'&action=noactive');
+		$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&idf='+file_id+'&action=noactive');
 		return false;
 	}); 
 	
 	$("#file .butNoActive").click(function() { 
 		var file_id = $(this).attr('id').substr(2);
-		$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&idf='+file_id+'&action=active');
+		$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&idf='+file_id+'&action=active');
 		return false;
 	}); 	
 	
 	$("#file .butEdit").click(function() { 
 		var file_id = $(this).attr('id').substr(4);
-		$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&idf='+file_id+'&action=edit');
+		$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&idf='+file_id+'&action=edit');
                 $(window).scrollTop(220);
 		return false;
 	}); 	
@@ -62,10 +62,10 @@
 	$("#file .butDel").click(function() { 
 		var file_id = $(this).attr('id').substr(5);
 		
-		qs = confirm('<? echo $MSG_del_confirm; ?>');
+		qs = confirm('<?= $MSG_del_confirm; ?>');
 		if(qs)
 		{
-			$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&idf='+file_id+'&action=delete');
+			$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&idf='+file_id+'&action=delete');
                         $(window).scrollTop(220);
 			return false;
 		}		
@@ -73,20 +73,20 @@
 
 	$("#file .butPosTop").click(function() { 
 		var file_id = $(this).attr('id').substr(4);
-		$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&idf='+file_id+'&action=posTop');
+		$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&idf='+file_id+'&action=posTop');
 		return false;
 	}); 
 
 	$("#file .butPosBot").click(function() { 
 		var file_id = $(this).attr('id').substr(4);
-		$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&idf='+file_id+'&action=posBot');
+		$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&idf='+file_id+'&action=posBot');
 		return false;
 	}); 
 	
 
 	
 	$("#file .butBack").click(function() { 
-		$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>');
+		$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>');
 		return false;
 	}); 
 	
@@ -97,7 +97,7 @@
 			file_name : $('#file_name').val(),
 			file_keywords : $('#file_keywords').val()
 		};
-		$.post('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&idf=<? echo $_GET['idf']; ?>&action=edit&act=editPoz', data, function(theResponse){
+		$.post('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&idf=<?= ($_GET['idf'] ?? ''); ?>&action=edit&act=editPoz', data, function(theResponse){
 				$("#file .fileList").html(theResponse);
 		});
 				
@@ -105,7 +105,7 @@
 	}); 
 	
 	$("#file .butAddFile").click(function() { 
-		$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&action=copy');
+		$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&action=copy');
          $(window).scrollTop(220);
 		return false;
 	}); 
@@ -115,7 +115,7 @@
 			filesNum : $('#filesNum').val(),
 		};
 
-		$.post('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>&action=copy&act=selUploadFiles', data, function(theResponse){
+		$.post('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>&action=copy&act=selUploadFiles', data, function(theResponse){
 			$("#file .fileList").html(theResponse);
 		});
 				
@@ -124,27 +124,27 @@
 </script>
 
 <?php
-	if ($showEditForm || $copyFile)
+	if ((isset($showEditForm) && $showEditForm) || (isset($copyFile) && $copyFile) )
 	{
 		?>
 		<ul class="navMenu">
 			<li><a href="#" class="butBack"><span class="icoBack"></span>Powrót do listy</a></li>
 		</ul>
-		<?
+		<?php
 	}
 
 ?>
 <div class="clear"></div>
-<?
+<?php
 	echo $message;
 	
 	switch ($_SESSION['type_to_files'])
 	{
 		case 'article'	: $formURL = $PHP_SELF.'?c=articles&amp;idp='.$_GET['idp'].'&amp;id='.$_GET['id'].'&amp;action=edit&amp;filesNum=' . $_POST['filesNum'] . '&amp;act=uploadFiles&amp;autoload=1#file'; break;
-		case 'page'		: $formURL = $PHP_SELF.'?c=page&amp;action=edit&amp;id='.$_GET['id'].'&amp;filesNum=' . $_POST['filesNum'] . '&amp;act=uploadFiles&amp;autoload=1#file'; break;
+		case 'page'		: $formURL = $PHP_SELF.'?c=page&amp;action=edit&amp;id='.$_GET['id'].'&amp;filesNum=' . ($_POST['filesNum'] ?? '') . '&amp;act=uploadFiles&amp;autoload=1#file'; break;
 	}
 	
-	if ($copyFile) 
+	if (isset($copyFile) && $copyFile) 
 	{
 	
 		echo '<form action="" method="post">'
@@ -156,7 +156,7 @@
 			echo '<option>'.$k.'</option>';
 		echo '</select> <input type="submit" value=" Dalej " class="butSelUploadFiles"  style="display: inline;" /> </form>';
 		
-			if ($copyFileSel) {
+			if (isset($copyFileSel) && $copyFileSel) {
 				echo '<form action="'.$formURL.'" method="post" enctype="multipart/form-data">';
 				for ($i=1; $i<=$_POST['filesNum']; $i++)
 				{
@@ -177,18 +177,18 @@
 			<form method="post" id="fileForm"  class="formEdAdd" action="" name="formEd" enctype="multipart/form-data">
 
                 <label for="file_pos">Kolejność: </label>
-                <input type="hidden" name="file_old_pos" id="file_old_pos" value="<? echo $row['pos']; ?>" />
-                <input type="text" name="file_pos" id="file_pos" size="4" maxlength="10" value="<? echo $row['pos']; ?>" /><br/>
+                <input type="hidden" name="file_old_pos" id="file_old_pos" value="<?= $row['pos']; ?>" />
+                <input type="text" name="file_pos" id="file_pos" size="4" maxlength="10" value="<?= $row['pos']; ?>" /><br/>
 
                 <label for="file_name">Nazwa: </label>
-                <input type="text" name="file_name" id="file_name" size="100" maxlength="250" value="<? echo $row['name']; ?>" /><br/>
+                <input type="text" name="file_name" id="file_name" size="100" maxlength="250" value="<?= $row['name']; ?>" /><br/>
                 
                 <label for="file_keywords">Słowa kluczowe: </label>
-                <input type="text" name="file_keywords" id="file_keywords" size="100" maxlength="250" value="<? echo $row['keywords']; ?>" class="tip" title="Słowa kluczowe służą łatwiejszemu wyszukiwaniu plików na Twojej stronie."/><br/>
+                <input type="text" name="file_keywords" id="file_keywords" size="100" maxlength="250" value="<?= $row['keywords']; ?>" class="tip" title="Słowa kluczowe służą łatwiejszemu wyszukiwaniu plików na Twojej stronie."/><br/>
 				
 			<input type="submit" value="Zapisz i powróć do listy" class="butSaveAdd" name="saveEdit"/>
 			</form>	
-		<?
+		<?php
 	}
 		
 	if ($showList)
@@ -202,7 +202,7 @@
 			?>    
       		
                 <table width="100%">
-                <caption>Ilość pozycji: <? echo $numRows; ?></caption>
+                <caption>Ilość pozycji: <?= $numRows; ?></caption>
                             
                 <tr id="listHead">
                     <th>L.p.</th>
@@ -212,7 +212,7 @@
                     <th>Pokazać</th>
                     <th>Akcja</th>
                 </tr>		
-                <?
+                <?php
 					$n = 1;
                     foreach ($outRow as $row)
                     {
@@ -270,7 +270,7 @@
                     include_once(CMS_TEMPL . DS . 'legend_icons.php');
                     ?>
                 </div>
-			<?
+			<?php
 			}
 			?>
 		</div>
@@ -304,15 +304,15 @@
                     var flashvars = {};   
 		  			  flashvars.mainDir = '';
                     flashvars.uploadPath = '';
-                    flashvars.maxWidth = <? echo $imageConfig['maxWidth']; ?>;
-                    flashvars.jpgCompression = <? echo $imageConfig['jpgCompression']; ?>;
+                    flashvars.maxWidth = <?= $imageConfig['maxWidth']; ?>;
+                    flashvars.jpgCompression = <?= $imageConfig['jpgCompression']; ?>;
                     flashvars.idTable = 'files'; 
-                    flashvars.idPage = '<? echo $_GET['id']; ?>'; 
-                    flashvars.idType = '<? echo $_SESSION['type_to_files']; ?>';
+                    flashvars.idPage = '<?= $_GET['id']; ?>'; 
+                    flashvars.idType = '<?= $_SESSION['type_to_files']; ?>';
 					flashvars.mini = 0;
-					flashvars.miniWidth = <? echo $imageConfig['miniWidth']; ?>;
-					flashvars.miniHeight = <? echo $imageConfig['miniHeight']; ?>;
-					flashvars.proportional = <? echo $imageConfig['proportional']; ?>;
+					flashvars.miniWidth = <?= $imageConfig['miniWidth']; ?>;
+					flashvars.miniHeight = <?= $imageConfig['miniHeight']; ?>;
+					flashvars.proportional = <?= $imageConfig['proportional']; ?>;
 					flashvars.bannerTop = 0;
 					flashvars.fileFilter = '<?php echo $fileFilter; ?>';
 					flashvars.maxUploadSize = <?php echo $maxUploadSize; ?>;
@@ -332,7 +332,7 @@
 		<?php
 	}
 	
-	if ($showEditImage){
+	if (isset($showEditImage) && $showEditImage){
 		echo '<h2>'. $pageTitle . ': ' . $filename . '</h2>';
 		?>
 		<div id="editImage">
@@ -343,14 +343,14 @@
 				flashvars.panelDir = "";
 				flashvars.currentPath = "../files/pl";
 				flashvars.image = "<?php echo $filename; ?>";
-				flashvars.maxWidth = <? echo $imageConfig['maxWidth']; ?>;
-				flashvars.jpgCompression = <? echo $imageConfig['jpgCompression']; ?>;
+				flashvars.maxWidth = <?= $imageConfig['maxWidth']; ?>;
+				flashvars.jpgCompression = <?= $imageConfig['jpgCompression']; ?>;
 				flashvars.idTable = 'photos';
 				flashvars.bgColor = '0x<?php echo $imageConfig['bgColor']; ?>';
 				flashvars.mini = 1;
-				flashvars.miniWidth = <? echo $imageConfig['miniWidth']; ?>;
-				flashvars.miniHeight = <? echo $imageConfig['miniHeight']; ?>;
-				flashvars.proportional = <? echo $imageConfig['proportional']; ?>;
+				flashvars.miniWidth = <?= $imageConfig['miniWidth']; ?>;
+				flashvars.miniHeight = <?= $imageConfig['miniHeight']; ?>;
+				flashvars.proportional = <?= $imageConfig['proportional']; ?>;
 				flashvars.bannerTop = 0;
 				<?php
 				if (check_login_user()){
@@ -361,7 +361,7 @@
 				// ]]>
 			</script>			
 		</div>
-		<?
+		<?php
 	}	
 	
 	//echo '<div id="result"></div>';

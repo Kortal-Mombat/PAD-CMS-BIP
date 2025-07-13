@@ -1,15 +1,15 @@
-<h2 class="mainHeader"><? echo $pageName; ?></h2>
+<h2 class="mainHeader"><?= $pageName; ?></h2>
 
-<?
+<?php
 	echo $message;
 	
 	echo '<div class="searchList">';
 	
-	for ($i=$searchStart; $i<($searchStart+$pageConfig['limit']); $i++)
+	for ($i=($searchStart ?? 0); $i<(($searchStart ?? 0)+$pageConfig['limit']); $i++)
 	{
 		echo '<div class="searchTxt">'
-			.'<h3>'.$searchArray[$i]['url'].'</h3>'
-			.'<div class="searchLeadTxt">'.$searchArray[$i]['lead'].'</div>'
+			.'<h3>'.($searchArray[$i]['url'] ?? '').'</h3>'
+			.'<div class="searchLeadTxt">'.($searchArray[$i]['lead'] ?? '').'</div>'
 			.'</div>';
 	}
 	

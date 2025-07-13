@@ -1,4 +1,4 @@
-<?
+<?php
 	class pdoClass extends PDO {
 	
 		private static $myInstance = false;	

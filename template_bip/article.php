@@ -1,10 +1,10 @@
-<?
-	echo '<h2>' . $pageName .'</h2>';
-	
+<?php
+	echo '<h2>' . ($pageName ?? '').'</h2>';
+	$_GET['id'] = $_GET['id'] ?? 0;
 	?>
 	<ul class="printers">
-    	<li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;print=1" target="_blank" ><img src="<?php echo $templateDir; ?>/images/butPrint.png" alt="<?php echo $TXT['print'];?>"/></a></li>
-        <li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;pdf=1" target="_blank" ><img src="<?php echo $templateDir; ?>/images/butPDF.png" alt="<?php echo $TXT['print_pdf'];?>"/></a></li>
+    	<li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;print=1" target="_blank" ><img src="/<?php echo $templateDir; ?>/images/butPrint.png" alt="<?php echo $TXT['print'];?>"/></a></li>
+        <li><a href="<?php echo $PHP_SELF . '?c='.$_GET['c'].'&amp;id=' . $_GET['id']; ?>&amp;pdf=1" target="_blank" ><img src="/<?php echo $templateDir; ?>/images/butPDF.png" alt="<?php echo $TXT['print_pdf'];?>"/></a></li>
     </ul>
 	<?php
 		
@@ -128,7 +128,7 @@
 		
 		if ($outSettings['pluginFB'] == 'włącz')
 		{
-			$fb_url = urlencode('http://'.$pageInfo['host'].'/index.php?c=article&id='. $_GET['id']);
+			$fb_url = urlencode('//'.$pageInfo['host'].'/index.php?c=article&id='. $_GET['id']);
 			echo '<div class="FBLike"><iframe  title="Facebook" src=\'http://www.facebook.com/plugins/like.php?href='.$fb_url.'&amp;layout=standard&amp;show_faces=true&amp;width=400&amp;action=like&amp;font=tahoma&amp;colorscheme='.$fbStyle.'&amp;height=32&amp;show_faces=false\' ></iframe></div>';   
 		}			
 	}

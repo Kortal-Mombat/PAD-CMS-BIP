@@ -22,7 +22,7 @@ if ($numRowsMenu>0)
 			$checked = '';
 			for ($j=1; $j<=count($mp_idrec);$j++)
 			{ 	 
-				if ($menuRow['id_mp'] == $mp_idrec[$j])
+				if (isset($mp_idrec[$j]) && ($menuRow['id_mp'] == $mp_idrec[$j]))
 					$checked = ' checked="checked"';
 			}					
 			echo '<li>'

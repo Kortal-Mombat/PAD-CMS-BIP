@@ -1,8 +1,14 @@
-<?
+<?php
+	if (!defined('CMS_TEMPL')) {
+		exit();
+	}
 	$TEMPL_PATH = CMS_TEMPL . DS . 'error.php';
 
 	$url_home = 'Powrót do strony głównej serwisu';
 	
+	$title = $title ?? '';
+	$err = $err ?? '';
+
 	switch ($_GET['e']){
 	
 		case 400 :

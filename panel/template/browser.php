@@ -1,5 +1,6 @@
 <?php
 include_once ( CMS_TEMPL . DS . 'header.php');
+$_GET['action'] = $_GET['action'] ?? '';
 ?>
 <script language="javascript" type="text/javascript">
    
@@ -12,7 +13,7 @@ include_once ( CMS_TEMPL . DS . 'header.php');
 			var args    = top.tinymce.activeEditor.windowManager.getParams();
 			win         = (args.window);
 			input       = (args.input);
-			win.document.getElementById(input).value = "<?php echo 'http://'.$pageInfo['host'] . '/' . str_replace( array('\\', '../', '..\\', './', '.\\'), array('/', '', '', '', ''), $currentPath) . '/'; ?>" + $(this).attr('data-n');
+			win.document.getElementById(input).value = "<?php echo '//'.$pageInfo['host'] . '/' . str_replace( array('\\', '../', '..\\', './', '.\\'), array('/', '', '', '', ''), $currentPath) . '/'; ?>" + $(this).attr('data-n');
 			top.tinymce.activeEditor.windowManager.close();
 		});
 	});
@@ -100,7 +101,7 @@ include_once ( CMS_TEMPL . DS . 'header.php');
 
 	if (in_array($value['ext'], $cmsConfig['photos'])){
 			
-	    $imgPath = 'http://'.$pageInfo['host'] . '/' . str_replace( array('\\', '../', '..\\', './', '.\\'), array('/', '', '', '', ''), $currentPath.'/'.$value['file']);
+	    $imgPath = '//'.$pageInfo['host'] . '/' . str_replace( array('\\', '../', '..\\', './', '.\\'), array('/', '', '', '', ''), $currentPath.'/'.$value['file']);
 		
 	    $onClick = 'FileBrowserDialogue.mySubmit(\''.$imgPath.'\');';
 			
@@ -145,7 +146,7 @@ include_once ( CMS_TEMPL . DS . 'header.php');
 	} 
 	else
 	{
-	    $filePath = 'http://'.$pageInfo['host'] . '/' . str_replace( array('\\', '../', '..\\', './', '.\\'), array('/', '', '', '', ''), $currentPath.'/'.$value['file']);
+	    $filePath = '//'.$pageInfo['host'] . '/' . str_replace( array('\\', '../', '..\\', './', '.\\'), array('/', '', '', '', ''), $currentPath.'/'.$value['file']);
 	    
 	    switch ($value['icon'])
 	    {

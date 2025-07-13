@@ -1,4 +1,5 @@
 <?php
+$_GET['action'] = $_GET['action'] ?? '';
 if ($showPanel)
 {
 	if (get_priv_controler('page') || get_priv_controler('dynamic_menu'))

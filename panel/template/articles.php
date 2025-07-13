@@ -1,43 +1,43 @@
-<?
+<?php
 	echo '<h2>'. $pageTitle .'</h2>';
 
 	if ($showList)
 	{
 		?>
 		<ul class="navMenu">
-			<li><a href="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=add&amp;idp=' . $_GET['idp']; ?>"><span class="icoAdd"></span>Dodaj artykuł</a></li>	
+			<li><a href="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=add&amp;idp=' . $_GET['idp']; ?>"><span class="icoAdd"></span>Dodaj artykuł</a></li>	
 		</ul>
-		<?
+		<?php
 	}
 	
 	if ($showEditForm)
 	{
 		?>
 		<ul class="navMenu">
-			<li><a href="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp']; ?>"><span class="icoBack"></span>Powrót do listy</a></li>
-            <li><a href="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=add&amp;idp=' . $_GET['idp']; ?>"><span class="icoAdd"></span>Dodaj artykuł</a></li>		
+			<li><a href="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp']; ?>"><span class="icoBack"></span>Powrót do listy</a></li>
+            <li><a href="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;action=add&amp;idp=' . $_GET['idp']; ?>"><span class="icoAdd"></span>Dodaj artykuł</a></li>		
 		</ul>
-		<?
+		<?php
 	}
 	
 	if ($showAddForm)
 	{
 		?>
 		<ul class="navMenu">
-			<li><a href="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp']; ?>"><span class="icoBack"></span>Powrót do listy</a></li>
+			<li><a href="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp']; ?>"><span class="icoBack"></span>Powrót do listy</a></li>
 		</ul>
-		<?
+		<?php
 	}	
 
 ?>
 <div class="clear"></div>
-<?
+<?php
 	echo $message;
 
 	if ($showAddForm)
 	{
 		?>
-			<form method="post"  class="formEdAdd" action="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp'] . '&amp;action=' . $_GET['action'] . '&amp;act=addPoz'; ?>" name="formAdd" enctype="multipart/form-data">
+			<form method="post"  class="formEdAdd" action="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp'] . '&amp;action=' . $_GET['action'] . '&amp;act=addPoz'; ?>" name="formAdd" enctype="multipart/form-data">
             <div id="tabs">
                 <ul>
                     <li><a href="#txt">Treść</a></li>
@@ -73,10 +73,10 @@
                         
                         <label for="ext_url">Przekierowanie:</label><?php echo addTip('articles', 'redirectInfo'); ?><br />
                         <input type="text" name="ext_url" id="ext_url" size="70" maxlength="250" value="" class="inBlock" title="Wpisz adres www na jaki ma być przekierowana strona np.:|http://www.nazwastrony.pl" /> 
-                        <input type="checkbox" name="new_window" id="new_window"  <? if ($_POST['new_window']==1) { echo ' checked="checked" '; } ?> /> <label for="new_window" class="checkInput">Otwarcie w nowym oknie</label><?php echo addTip('articles', 'redirect'); ?><br/>				
+                        <input type="checkbox" name="new_window" id="new_window"  <?php if ($_POST['new_window']==1) { echo ' checked="checked" '; } ?> /> <label for="new_window" class="checkInput">Otwarcie w nowym oknie</label><?php echo addTip('articles', 'redirect'); ?><br/>				
                         
                         <label for="show_date">Data utworzenia dokumentu / Data wyświetlana:</label><?php echo addTip('articles', 'date_add'); ?><br />
-                        <input type="text" class="datepicker inBlock" name="show_date" id="show_date" size="21" maxlength="10" value="<? echo date("Y-m-d")?>"/><br/>
+                        <input type="text" class="datepicker inBlock" name="show_date" id="show_date" size="21" maxlength="10" value="<?= date("Y-m-d")?>"/><br/>
                         
                         <label for="start_date">Wyświetl od:</label><?php echo addTip('articles', 'date_from'); ?><br />
                         <input type="text" class="datepicker inBlock" name="start_date" id="start_date" size="21" maxlength="10"  value="" /><br/>
@@ -88,7 +88,7 @@
                         <input type="text" name="autor" id="autor" size="70" maxlength="250" value=""  aria-required="true"/><br/>				
 
                         <label for="wprowadzil">Osoba wprowadzająca:</label>
-                        <input type="text" name="wprowadzil" id="wprowadzil" size="70" maxlength="250" value="<? echo $_SESSION['userData']['name']; ?>" /><br/>	
+                        <input type="text" name="wprowadzil" id="wprowadzil" size="70" maxlength="250" value="<?= $_SESSION['userData']['name']; ?>" /><br/>	
 
                         <label for="podmiot">* Podmiot udostępniający informację:</label>
                         <input type="text" name="podmiot" id="podmiot" size="70" maxlength="250" value=""  aria-required="true"/><br/>	
@@ -137,7 +137,7 @@
             <input type="submit" value="Zapisz" class="butSave" name="save"/><input type="submit" value="Zapisz i dodaj kolejną" class="butSaveAdd" name="saveAdd"/>
 			</form>	     
      
-        <?
+        <?php
 	}
         
 	if ($showEditForm)
@@ -149,7 +149,7 @@
 				.'</script>';
 		}		
 		?>
-			<form method="post"  class="formEdAdd" action="<? echo $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp'] . '&amp;action=' . $_GET['action'] . '&amp;act=editPoz&amp;id=' . $row['id_art']; ?>" name="formEd" enctype="multipart/form-data">
+			<form method="post"  class="formEdAdd" action="<?= $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp'] . '&amp;action=' . $_GET['action'] . '&amp;act=editPoz&amp;id=' . $row['id_art']; ?>" name="formEd" enctype="multipart/form-data">
             <div id="tabs">
                 <ul>
                     <li><a href="#txt">Treść</a></li>
@@ -165,58 +165,58 @@
                         <a name="txt"></a>						
                         
                         <label for="name">* Tytuł: </label><?php echo addTip('articles', 'title'); ?>
-                        <input type="text" name="name" id="name" size="100" maxlength="250" value="<? echo $row['name']; ?>"  aria-required="true"/><br/>
+                        <input type="text" name="name" id="name" size="100" maxlength="250" value="<?= $row['name']; ?>"  aria-required="true"/><br/>
 			
                         <label for="url_name">Tytuł wyświetlany w linku: </label><?php echo addTip('articles', 'url_name'); ?>
-                        <input type="text" name="url_name" id="url_name" size="100" maxlength="250" value="<? echo $row['url_name']; ?>" /><br />
+                        <input type="text" name="url_name" id="url_name" size="100" maxlength="250" value="<?= $row['url_name']; ?>" /><br />
                         
                         <label for="lead_text">Wprowadzenie do artykułu: </label>
-                        <textarea id="lead_text" name="lead_text" style="width:98%; height: 250px"><? echo $row['lead_text']; ?></textarea><br/>	
+                        <textarea id="lead_text" name="lead_text" style="width:98%; height: 250px"><?= $row['lead_text']; ?></textarea><br/>	
                                                 
                         <label for="text">Rozwinięcie: </label>
-                        <textarea id="text" name="text" style="width:98%; height: 500px"><? echo $row['text']; ?></textarea><br/>
+                        <textarea id="text" name="text" style="width:98%; height: 500px"><?= $row['text']; ?></textarea><br/>
 						<?php echo addEditor('lead_text, text'); ?>						
                         
-                        <textarea id="old_text" name="old_text" class="hide_all"><? echo $row['text']; ?></textarea>
+                        <textarea id="old_text" name="old_text" class="hide_all"><?= $row['text']; ?></textarea>
                     </div>
                     
                     <div id="set">
                         <a name="set"></a>						
                         <label for="pos">Kolejność: </label><?php echo addTip('articles', 'position'); ?>
-                        <input type="hidden" name="old_pos" value="<? echo $row['pos']; ?>" />
-                        <input type="text" name="pos" id="pos" size="4" maxlength="10" value="<? echo $row['pos']; ?>" /><br/>
+                        <input type="hidden" name="old_pos" value="<?= $row['pos']; ?>" />
+                        <input type="text" name="pos" id="pos" size="4" maxlength="10" value="<?= $row['pos']; ?>" /><br/>
                             
                         <label for="ext_url">Przekierowanie:</label><?php echo addTip('articles', 'redirectInfo'); ?><br/>
-                        <input type="text" name="ext_url" id="ext_url" size="70" maxlength="250" value="<? echo $row['ext_url']; ?>" class="inBlock" title="Wpisz adres www na jaki ma być przekierowana strona np.:|http://www.nazwastrony.pl" /> 
-                        <input type="checkbox" name="new_window" id="new_window"  <? if ($row['new_window']==1) { echo ' checked="checked" '; } ?> /> <label for="new_window" class="checkInput">Otwarcie w nowym oknie</label><?php echo addTip('articles', 'redirect'); ?><br/>				
+                        <input type="text" name="ext_url" id="ext_url" size="70" maxlength="250" value="<?= $row['ext_url']; ?>" class="inBlock" title="Wpisz adres www na jaki ma być przekierowana strona np.:|http://www.nazwastrony.pl" /> 
+                        <input type="checkbox" name="new_window" id="new_window"  <?php if ($row['new_window']==1) { echo ' checked="checked" '; } ?> /> <label for="new_window" class="checkInput">Otwarcie w nowym oknie</label><?php echo addTip('articles', 'redirect'); ?><br/>				
                         
                         <label for="show_date">Data utworzenia dokumentu / Data wyświetlana:</label><?php echo addTip('articles', 'date_add'); ?><br /> 
-                        <input type="text" class="datepicker inBlock" name="show_date" id="show_date" size="21" maxlength="10" value="<? echo $row['show_date']; ?>"/><br/>
+                        <input type="text" class="datepicker inBlock" name="show_date" id="show_date" size="21" maxlength="10" value="<?= $row['show_date']; ?>"/><br/>
                         
                         <label for="start_date">Wyświetl od:</label><?php echo addTip('articles', 'date_from'); ?><br />
-                        <input type="text" class="datepicker inBlock" name="start_date" id="start_date" size="21" maxlength="10"  value="<? echo $row['start_date']; ?>" /><br/>
+                        <input type="text" class="datepicker inBlock" name="start_date" id="start_date" size="21" maxlength="10"  value="<?= $row['start_date']; ?>" /><br/>
                         
                         <label for="stop_date">Wyświetl do:</label><?php echo addTip('articles', 'date_to'); ?><br />
-                        <input type="text" class="datepicker inBlock" name="stop_date" id="stop_date" size="21" maxlength="10" value="<? echo $row['stop_date']; ?>" /><br/>
+                        <input type="text" class="datepicker inBlock" name="stop_date" id="stop_date" size="21" maxlength="10" value="<?= $row['stop_date']; ?>" /><br/>
 
                         <label for="autor">* Autor/Osoba sporządzająca:</label><?php echo addTip('articles', 'author'); ?>
-                        <input type="text" name="autor" id="autor" size="70" maxlength="250" value="<? echo $row['author']; ?>"  aria-required="true"/><br/>	
+                        <input type="text" name="autor" id="autor" size="70" maxlength="250" value="<?= $row['author']; ?>"  aria-required="true"/><br/>	
 
                         <label for="wprowadzil">Osoba wprowadzająca:</label>
-                        <input type="text" name="wprowadzil" id="wprowadzil" size="70" maxlength="250" value="<? echo $row['wprowadzil']; ?>" /><br/>	
+                        <input type="text" name="wprowadzil" id="wprowadzil" size="70" maxlength="250" value="<?= $row['wprowadzil']; ?>" /><br/>	
                         
                         <label for="podmiot">* Podmiot udostępniający informację:</label>
-                        <input type="text" name="podmiot" id="podmiot" size="70" maxlength="250" value="<? echo $row['podmiot']; ?>"  aria-required="true"/><br/>	                                                			
+                        <input type="text" name="podmiot" id="podmiot" size="70" maxlength="250" value="<?= $row['podmiot']; ?>"  aria-required="true"/><br/>	                                                			
                     </div>
                      
                     <div id="stat">
                         <a name="stat"></a>						
                         
-                        <div class="label_txt inline">Ilość wyświetleń:</div> <span><? echo $row['counter']; ?></span><br/>
+                        <div class="label_txt inline">Ilość wyświetleń:</div> <span><?= $row['counter']; ?></span><br/>
                         
-                        <div class="label_txt inline">Data utworzenia:</div> <span><? echo $row['create_date']; ?></span><br/>
+                        <div class="label_txt inline">Data utworzenia:</div> <span><?= $row['create_date']; ?></span><br/>
                         
-                        <div class="label_txt inline">Data ostatniej aktualizacji:</div> <span><? echo $row['modified_date']; ?></span><br/>
+                        <div class="label_txt inline">Data ostatniej aktualizacji:</div> <span><?= $row['modified_date']; ?></span><br/>
     
                     </div>
                         
@@ -224,13 +224,13 @@
                         <a name="seo"></a>						
     
                         <label for="meta_title">Meta title (tytuł):</label><?php echo addTip('articles', 'metaTitle'); ?>
-                        <input type="text" name="attrib[meta_title]" id="meta_title" size="100" value="<? echo $attrib['meta_title']; ?>"  /><br/>
+                        <input type="text" name="attrib[meta_title]" id="meta_title" size="100" value="<?= $attrib['meta_title']; ?>"  /><br/>
                 
                         <label for="meta_keywords">Meta keywords (słowa kluczowe):</label><?php echo addTip('articles', 'metaKey'); ?>
-                        <input type="text" name="attrib[meta_keywords]" id="meta_keywords" size="100" value="<? echo $attrib['meta_keywords']; ?>"  /><br/>			
+                        <input type="text" name="attrib[meta_keywords]" id="meta_keywords" size="100" value="<?= $attrib['meta_keywords']; ?>"  /><br/>			
 			
                         <label for="meta_desciption">Meta desciption (opis):</label><?php echo addTip('articles', 'metaDesc'); ?>
-                        <input type="text" name="attrib[meta_desciption]" id="meta_desciption" size="100" value="<? echo $attrib['meta_desciption']; ?>"  /><br/>
+                        <input type="text" name="attrib[meta_desciption]" id="meta_desciption" size="100" value="<?= $attrib['meta_desciption']; ?>"  /><br/>
     
                     </div>    
                     
@@ -241,13 +241,13 @@
                         <script type="text/javascript">
 						$(document).ready(function(){  
 							$('#tabPhoto').click(function() { 
-								$('#photo .photoList').load('index.php?c=photos&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>');
+								$('#photo .photoList').load('index.php?c=photos&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>');
 							});
 							<?php
 							if ($_GET['autoload'] == 1)
 							{
 							?>
-								$('#photo .photoList').load('index.php?c=photos&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>');
+								$('#photo .photoList').load('index.php?c=photos&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>');
 							<?php
 							}
 							?>			    
@@ -262,13 +262,13 @@
                         <script type="text/javascript">
 							$(document).ready(function(){  
 								$('#tabFiles').click(function() { 
-									$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>');
+									$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>');
 								});
 								<?php
 								if ($_GET['autoload'] == 1)
 								{
 								?>
-									$('#file .fileList').load('index.php?c=files&idp=<? echo $_GET['idp']; ?>&id=<? echo $_GET['id']; ?>');  
+									$('#file .fileList').load('index.php?c=files&idp=<?= $_GET['idp']; ?>&id=<?= $_GET['id']; ?>');  
 								<?php
 								}
 								?>
@@ -294,7 +294,7 @@
 			<input type="submit" value="Zapisz" class="butSave" name="save"/>
 			<input type="submit" value="Zapisz i powróć do listy" class="butSaveAdd" name="saveEdit"/>
 			</form>	
-		<?
+		<?php
 	}
 		
 	if ($showList)
@@ -313,9 +313,9 @@
 			</select>
 		    </form>
 		
-        <form action="<? echo $PHP_SELF.'?c='.$_GET['c'].'&amp;idp='.$_GET['idp'].'&amp;action=change' ?>" method="post" name="f_sel">
+        <form action="<?= $PHP_SELF.'?c='.$_GET['c'].'&amp;idp='.$_GET['idp'].'&amp;action=change' ?>" method="post" name="f_sel">
         <table width="100%" id="rowList">
-			<caption>Ilość pozycji: <? echo $numRows; ?></caption>
+			<caption>Ilość pozycji: <?= $numRows; ?></caption>
 			<thead>
 				<tr><th width="5%"></th>
                 <th width="4%">L.p</th>
@@ -326,7 +326,7 @@
                 <th width="18%">Akcja</th></tr>
 			</thead>
 			<tbody>
-			<?
+			<?php
 				$n = 1;
 				$i = 0;
 				foreach ($outRow as $row)
@@ -445,7 +445,7 @@
         </form>
         
         </div>
-		<?
+		<?php
 			$url = $PHP_SELF.'?c=' . $_GET['c'] . '&amp;idp=' . $_GET['idp'] . '&amp;s=';
 			include (CMS_TEMPL . DS . 'pagination.php');	
 		}		

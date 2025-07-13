@@ -1,3 +1,13 @@
+RewriteEngine On 
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.php/.*\sHTTP/
+RewriteRule ^index\.php/(.*)$ /$1 [R=301,L]
+
+RewriteCond %{HTTPS} !=on 
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
 ErrorDocument 400 /error-400
 ErrorDocument 401 /error-401
 ErrorDocument 403 /error-403

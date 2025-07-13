@@ -3,7 +3,7 @@
 
 	echo $message;
 ?>
-<form method="post"  class="formEdAdd" action="<? echo $PHP_SELF.'?c=' . $_GET['c']; ?>" name="formEd" enctype="multipart/form-data">
+<form method="post"  class="formEdAdd" action="<?= $PHP_SELF.'?c=' . $_GET['c']; ?>" name="formEd" enctype="multipart/form-data">
 <div id="tabs">
     <ul>
 	<li><a href="#baner">Nazwa i logo serwisu</a></li>

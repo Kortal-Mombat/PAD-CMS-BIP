@@ -20,7 +20,7 @@
 	// Tablica zmiennych do sprawdzenia czy sa numeryczne
 	$varToClean = array('UID', 'id', 'idf', 's');
 	foreach ($varToClean as $k => $v) {
-		if ($_GET[$v]) {
+		if (isset($_GET[$v]) && $_GET[$v]) {
 			$_GET[$v] = clean_id($_GET[$v]);
 		}
 	} 		

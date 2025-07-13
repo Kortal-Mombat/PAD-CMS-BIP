@@ -1,20 +1,22 @@
 <?php
+
+define( 'DS', DIRECTORY_SEPARATOR );    
+define( 'CMS_BASE', dirname(__FILE__) );
+
+$parts = explode( DS, CMS_BASE );
+array_pop( $parts );
+define( 'CMS_ROOT', implode( DS, $parts ) ); 
+include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
+
 $uploadPermission = $_REQUEST['uploadPermission'];
 
 if ($uploadPermission == 1)
 {
-    define( 'DS', DIRECTORY_SEPARATOR );    
-    define( 'CMS_BASE', dirname(__FILE__) );
-    
-    $parts = explode( DS, CMS_BASE );
-    array_pop( $parts );
-    define( 'CMS_ROOT', implode( DS, $parts ) ); 
-    
     include_once ( CMS_ROOT . DS . 'includes' . DS . 'config.php' );
     include_once ( CMS_ROOT . DS . 'includes' . DS . 'db.php' );
     include_once ( CMS_ROOT . DS . 'includes' . DS . 'functions.php' );
     
-    $idTable = $_REQUEST['idTable'];
+    $idTable = $_REQUEST['idTable'] ?? 'files';
     $idPage = $_REQUEST['idPage'];
     $idType = $_REQUEST['idType'];
     
