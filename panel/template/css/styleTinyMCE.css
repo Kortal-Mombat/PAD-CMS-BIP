@@ -1,0 +1,2 @@
+span[lang] { background:#0a0; color:#000; border:1px solid #050; margin:0 5px; border-radius:3px; }
+span[lang]:after {content:" [lang] "; color:#fff; text-shadow:1px 1px 0 #000;}

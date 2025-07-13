@@ -1,0 +1,17 @@
+body{ font-size: 1.286em; line-height:normal;}
+
+#fontWrapper {font-size: 0.722em }
+#fonts ul li.fontContrast { padding-left: 5px; }
+
+#fonts ul li.fontContrast a { margin-left: 5px;}
+
+#infoWrapper {font-size: 0.722em; padding: 0 90px 0 10px; width:350px;}
+#infoWrapper p { margin:8px 0 0 0;}
+
+#mobileVer {font-size: 0.722em; top:9px; right:290px;}
+
+#menuWrapper h2,
+#contactAddress h2 { font-size: 1em;}
+
+#searchWrapper {font-size: 0.722em }
+#linksWrapper ul {font-size: 0.722em }

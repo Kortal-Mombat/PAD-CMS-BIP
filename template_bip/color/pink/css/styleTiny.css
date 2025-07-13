@@ -1,0 +1,17 @@
+body { font-family:'firaSans', Tahoma, Arial, Helvetica, sans-serif; font-size:0.875em;	line-height: 1.50em; margin:10px; padding:0; background:#fff;	color:#555;}
+
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-family:'firaSansSemiBold'; color:#87507b;}
+
+h1 { font-size:1.714em; font-weight:normal; margin:0; padding:0; line-height: 1.09em;}
+h2 { margin:0 0 20px 0; padding:30px 100px 20px 15px; font-size:1.667em; font-weight:normal; border-bottom:1px solid #ececec;}
+h3 { margin:0; padding:0 0 10px 0; font-size:1.333em; font-weight:normal; }
+
+/* Table */
+table {border-collapse: collapse; border: 1px solid #87507b}
+table th {font-weight: bold; padding: 8px 10px 6px 10px; background: #87507b; color: #fff}
+table td {padding: 5px; border: 1px solid #87507b}
+
+a,
+a:visited { text-decoration:underline; color:#9a628e; }
+a:hover { text-decoration: underline; color:#5574a8; }
+a:focus { text-decoration: none; color:#fff; background:#9a628e; }

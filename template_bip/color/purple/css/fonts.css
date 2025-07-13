@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'firaSans';
+    src: url('../fonts/firasans-regular-webfont.eot');
+    src: url('../fonts/firasans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/firasans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/firasans-regular-webfont.woff') format('woff'),
+         url('../fonts/firasans-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'firaSansSemiBold';
+    src: url('../fonts/firasans-semibold-webfont.eot');
+    src: url('../fonts/firasans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/firasans-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/firasans-semibold-webfont.woff') format('woff'),
+         url('../fonts/firasans-semibold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}

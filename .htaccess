@@ -1,0 +1,48 @@
+ErrorDocument 400 /error-400
+ErrorDocument 401 /error-401
+ErrorDocument 403 /error-403
+ErrorDocument 404 /error-404
+ErrorDocument 405 /error-405
+ErrorDocument 406 /error-406
+ErrorDocument 408 /error-408
+ErrorDocument 410 /error-410
+ErrorDocument 500 /error-500
+ErrorDocument 503 /error-503
+
+Options -Indexes
+Options +FollowSymlinks
+
+SetEnv SESSION_USE_TRANS_SID 0
+
+AddType font/ttf .ttf
+AddType font/eot .eot
+AddType font/otf .otf
+AddType font/woff .woff
+
+<FilesMatch "\.(ttf|otf|eot|woff)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on 
+
+RewriteCond %{REQUEST_URI} (container/(.*)\.(htm(.*)|php(.*)|js(.*)))|(download/(.*)\.(htm(.*)|php(.*)|js(.*)))|(files/(.*)\.(htm(.*)|php(.*)|js(.*)))$
+RewriteRule .* - [F]
+
+RewriteRule ^p,([^.]*),([^,]+)$ index.php?c=page&id=$1 [L,NC,NS]
+RewriteRule ^art,([^.]*),([^,]+)$ index.php?c=article&id=$1 [L,NC,NS]
+
+RewriteRule ^mapa_strony$ index.php?c=sitemap [L,NC,NS]
+RewriteRule ^strona-glowna$ index.php [L,NC,NS]
+RewriteRule ^mobile$ index.php?c=mobile [L,NC,NS]
+RewriteRule ^pelna_wersja$ index.php?c=mobile&action=off [L,NC,NS]
+
+RewriteRule ^getTemplate$ index.php?c=getTemplate [L,NC,NS]
+
+
+# dla errodocs
+RewriteRule ^error-([^.]+)$ index.php?c=error&e=$1 [L,NC,NS]
+
+</IfModule>

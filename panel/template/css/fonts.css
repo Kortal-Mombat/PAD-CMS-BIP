@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'ptSansBold';
+    src: url('../fonts/ptSansBold.eot');
+    src: url('../fonts/ptSansBold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ptSansBold.woff') format('woff'),
+         url('../fonts/ptSansBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ptSans';
+    src: url('../fonts/ptSansRegular.eot');
+    src: url('../fonts/ptSansRegular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ptSansRegular.woff') format('woff'),
+         url('../fonts/ptSansRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
