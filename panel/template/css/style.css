@@ -882,7 +882,12 @@ select.selPos { padding: 1px; border:1px solid #73707c; margin:-15px 0 0 -10px; 
 #copyright span { }
 
 #footer { clear:both; padding:0 0 20px; position:relative; }
-#spruc { position:absolute; top:10px; left:40px;} 
+#spruc { 
+	display: grid;
+	position:absolute; 
+	top:-140px; 
+	left:40px;
+} 
 
 div#location{ overflow: hidden; }
 
@@ -1250,7 +1255,7 @@ fieldset.changeTitle legend { background: none; font-family: 'ptSansBold'; paddi
 button.ui-datepicker-trigger {background: none; border: 2px solid transparent; margin-top: -12px; display: inline-block}
 button.ui-datepicker-trigger:hover, button.ui-datepicker-trigger:focus {border-color: #d23a36}
 
-.topWrapper { position:absolute; top:0; left:10px; background:#fff; width:660px; height:110px;}
+.topWrapper { position:absolute; top:0; left:10px; background:#fff; width:790px; height:110px;}
 .logoPAD { position:absolute; top:25px; left:20px; }
 .topWrapper p { width:70px; font-weight:bold;  position:absolute; top:20px; left:195px; color:#111; text-align:right; }
 

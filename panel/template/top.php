@@ -20,9 +20,10 @@
     	<a href="index.php" class="logoPAD"><img src="template/images/logoPADCMS.png" alt="Strona główna panelu"/></a>
         <p>Zobacz również</p>
         <ul>
-        	<li><a href="http://portal.widzialni.org"><img src="template/images/logoPADPortal.png" alt="Portal Polskiej Akademii Dostępności"/></a></li>
-            <li><a href="http://platforma.widzialni.org"><img src="template/images/logoPADPlatforma.png" alt="Platforma e-learningowa"/></a></li>
-            <li><a href="http://widzialni.org/szkolenie-redagowanie-tresci-dostepnej-strony-internetowej-wcag-20,m,mg,44,56">Warsztaty <img src="template/images/icoMore.png" alt=""/></a></li>
+        	<li><a href="http://portal.widzialni.org" target="_blank"><img src="template/images/logoPADPortal.png" alt="Portal Polskiej Akademii Dostępności"/></a></li>
+            <li><a href="http://platforma.widzialni.org" target="_blank"><img src="template/images/logoPADPlatforma.png" alt="Platforma e-learningowa"/></a></li>
+        	<li><a href="https://github.com/Kortal-Mombat/PAD-CMS-BIP" target="_blank"><img src="template/images/logoPADCMSBIP.png" alt="Fork PAD CMS BIP Kortal Mombat"/></a></li>
+            <li><a href="http://widzialni.org/szkolenie-redagowanie-tresci-dostepnej-strony-internetowej-wcag-20,m,mg,44,56" target="_blank">Warsztaty <img src="template/images/icoMore.png" alt=""/></a></li>
         </ul>
     </div>
     

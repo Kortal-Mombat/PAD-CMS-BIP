@@ -46,6 +46,12 @@
     <div class="startInfo">
 		<h2>Historia zmian:</h2>
 		<ul>
+			<li>1.2.1.ak4 - 2025-07-15</li>
+				<ul>
+					<li>Dostosowanie do PHP 8.4</li>
+					<li>Poprawki bezpieczeństwa</li>
+				</ul>
+			</li>
 			<li>1.2.1.ak3 - 2025-07-13</li>
 				<ul>
 					<li>Poprawki bezpieczeństwa</li>

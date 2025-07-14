@@ -61,7 +61,8 @@
 		} 
 		else
 		{
-			$message .= show_msg ('err', $ERR_reset_pswd_email);
+			$message .= show_msg ('msg', $MSG_mail_pswd_reset);
+			// $message .= show_msg ('err', $ERR_reset_pswd_email);
 		}			
 	}
 

@@ -1,11 +1,15 @@
 <?php
-
-define( 'DS', DIRECTORY_SEPARATOR );    
-define( 'CMS_BASE', dirname(__FILE__) );
-
-$parts = explode( DS, CMS_BASE );
-array_pop( $parts );
-define( 'CMS_ROOT', implode( DS, $parts ) ); 
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+if (!defined('CMS_BASE')) {
+	define( 'CMS_BASE', dirname(__FILE__) );
+}
+if (!defined('CMS_ROOT')) {
+	$parts = explode( DS, CMS_BASE );
+	array_pop( $parts );
+	define( 'CMS_ROOT', implode( DS, $parts ) ); 
+}
 include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
 
 $uploadPermission = $_REQUEST['uploadPermission'];

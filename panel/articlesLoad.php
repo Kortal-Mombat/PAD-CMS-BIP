@@ -17,6 +17,7 @@
 	define( 'CMS_ROOT', implode( DS, $parts ) );
 	define( 'CMS_TEMPL', CMS_BASE .  DS . 'template');
 	
+	include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
 	/**
 	 * Dolaczenie plików konfiguracyjnych 
 	 */ 

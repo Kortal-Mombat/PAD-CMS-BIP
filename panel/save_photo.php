@@ -1,4 +1,17 @@
 <?php
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+if (!defined('CMS_BASE')) {
+	define( 'CMS_BASE', dirname(__FILE__) );
+}
+if (!defined('CMS_ROOT')) {
+	$parts = explode( DS, CMS_BASE );
+	array_pop( $parts );
+	define( 'CMS_ROOT', implode( DS, $parts ) ); 
+}
+include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
+
 $idTable = $_REQUEST['idTable'];
 $mini = $_REQUEST['mini'];
 $miniWidth = $_REQUEST['miniWidth'];
@@ -7,8 +20,6 @@ $proportional = $_REQUEST['proportional'];
 $jpgCompression = $_REQUEST['jpgCompresion'];
 $bannerTop = $_REQUEST['bannerTop'];
 $uploadPermission = $_REQUEST['uploadPermission'];
-
-define( 'DS', DIRECTORY_SEPARATOR );
 
 switch ($idTable){
     case 'files':
@@ -32,13 +43,6 @@ switch ($idTable){
 	break;
 }
 
-define( 'CMS_BASE', dirname(__FILE__) );
-
-$parts = explode( DS, CMS_BASE );
-array_pop( $parts );
-define( 'CMS_ROOT', implode( DS, $parts ) );
-
-include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
 include_once ( CMS_ROOT . DS . 'includes' . DS . 'functions.php' );
 
 if ($uploadPermission){

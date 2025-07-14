@@ -1,4 +1,16 @@
 <?php
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+if (!defined('CMS_BASE')) {
+	define( 'CMS_BASE', dirname(__FILE__) );
+}
+if (!defined('CMS_ROOT')) {
+	$parts = explode( DS, CMS_BASE );
+	array_pop( $parts );
+	define( 'CMS_ROOT', implode( DS, $parts ) ); 
+}
+include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
 if ($showPanel)
 {	
 	
@@ -104,7 +116,7 @@ if ($showPanel)
 		{
 			if ($k != 'change')
 			{
-				$tmp = explode('_',$k);
+				$tmp = array_pad(explode('_',$k),2,'0');
 			
 				$sql = "UPDATE `" . $dbTables['pages'] . "`  SET pos='".$v."' WHERE (`id` = ?) LIMIT 1";
 			
