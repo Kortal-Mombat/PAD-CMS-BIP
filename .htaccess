@@ -1,3 +1,19 @@
+php_flag display_errors off
+php_value error_reporting -1
+php_value log_errors 1
+php_value error_log /ścieżka/do/logs/PHP_errors.log
+
+Order allow,deny
+Allow from all
+
+<FilesMatch "\.php$">
+    Deny from all
+</FilesMatch>
+
+<Files "index.php">
+    Allow from all
+</Files>
+
 RewriteEngine On 
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.php/.*\sHTTP/
 RewriteRule ^index\.php/(.*)$ /$1 [R=301,L]

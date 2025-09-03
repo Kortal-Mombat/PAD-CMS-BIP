@@ -1,0 +1,29 @@
+Order Deny,Allow
+Deny from all
+
+# Podsieć: 192.0.2.0/29 (maska 255.255.255.248) – adresy dokumentacyjne
+Allow from 192.0.2.0/255.255.255.248
+
+# Pojedyncze adresy IP (adresy dokumentacyjne)
+Allow from 198.51.100.10
+Allow from 198.51.100.20
+Allow from 203.0.113.5
+
+# Podsieć: 198.51.100.128/29 (maska 255.255.255.248) – adresy dokumentacyjne
+Allow from 198.51.100.128/255.255.255.248
+
+<Files "index.php">
+    Order Deny,Allow
+    Deny from all
+
+    # Podsieć: 192.0.2.0/29 (maska 255.255.255.248)
+    Allow from 192.0.2.0/29
+
+    # Pojedyncze adresy IP
+    Allow from 198.51.100.10
+    Allow from 198.51.100.20
+    Allow from 203.0.113.5
+
+    # Podsieć: 198.51.100.128/29 (maska 255.255.255.248)
+    Allow from 198.51.100.128/29
+</Files>
