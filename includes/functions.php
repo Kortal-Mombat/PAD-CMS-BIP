@@ -949,6 +949,8 @@ function conv_vars ($in , $tags = '')
             $out[$key] = conv_vars($val, $tags); // rekurencja
         }
         return $out;
+    } elseif (is_object($in)) {
+        return conv_vars((array) $in, $tags);
     } else {
         return '';
     }
@@ -1092,23 +1094,25 @@ function get_ip($onlyIP = '')
 	$ip_f = '';
     if ($onlyIP == 'onlyIP')
     {
-	if (empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-	    $ip = $_SERVER["REMOTE_ADDR"];
-	} else 
-	{
-	    $ip =  $_SERVER["HTTP_X_FORWARDED_FOR"];
-	}			
-	return $ip;
+		if (empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+			$ip = $_SERVER["REMOTE_ADDR"];
+		} else 
+		{
+			// $ip =  $_SERVER["HTTP_X_FORWARDED_FOR"];
+			$ip = $_SERVER["REMOTE_ADDR"];
+		}			
+		return $ip;
     } else
     {
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) 
-	{
-	    $ip_f = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	}
-	$ip = $_SERVER["REMOTE_ADDR"]; 
-	$host = gethostbyaddr( $ip );
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) 
+		{
+			$ip_f = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		$ip = $_SERVER["REMOTE_ADDR"]; 
+		$host = gethostbyaddr( $ip );
 
-	return $ip . ' | ' . $host . ' | ' . $ip_f;
+		// return $ip . ' | ' . $host . ' | ' . $ip_f;
+		return $ip . ' | ' . $host;
     }
 }
 	

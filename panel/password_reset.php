@@ -75,7 +75,7 @@
 			
 		$res = new resClass;
 			
-		$sql = "SELECT * FROM `" . $dbTables['users'] . "` WHERE (`login` = ? ) AND (`auth_key` = ? ) LIMIT 1";
+		$sql = "SELECT * FROM `" . $dbTables['users'] . "` WHERE (`login` = ? ) AND (`auth_key` = ? ) AND (`auth_key` != '' ) LIMIT 1";
 		$params = array( 
 			'login' => $_GET['user'],
 			'auth_key' => $_GET['ak'],			
@@ -109,7 +109,7 @@
 					$auth_key = sha1(time().$salt);	
 					$f_pass = sha1($_POST['passwd'].$salt);		
 					
-					$sql = "UPDATE `" . $dbTables['users'] . "` SET passwd = ?, auth_key = ? WHERE (`id_user` = ?) LIMIT 1";
+					$sql = "UPDATE `" . $dbTables['users'] . "` SET passwd = ?, auth_key = ? WHERE (`id_user` = ?) AND (`auth_key` != '' ) LIMIT 1";
 					$params = array (
 								'passwd' => $f_pass,
 								'auth_key' => $auth_key, 

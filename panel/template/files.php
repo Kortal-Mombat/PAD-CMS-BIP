@@ -299,32 +299,6 @@
 	                <div id="upload"></div>
                 </div>
                 
-                <script type="text/javascript">
-                    // <![CDATA[
-                    var flashvars = {};   
-		  			  flashvars.mainDir = '';
-                    flashvars.uploadPath = '';
-                    flashvars.maxWidth = <?= $imageConfig['maxWidth']; ?>;
-                    flashvars.jpgCompression = <?= $imageConfig['jpgCompression']; ?>;
-                    flashvars.idTable = 'files'; 
-                    flashvars.idPage = '<?= $_GET['id']; ?>'; 
-                    flashvars.idType = '<?= $_SESSION['type_to_files']; ?>';
-					flashvars.mini = 0;
-					flashvars.miniWidth = <?= $imageConfig['miniWidth']; ?>;
-					flashvars.miniHeight = <?= $imageConfig['miniHeight']; ?>;
-					flashvars.proportional = <?= $imageConfig['proportional']; ?>;
-					flashvars.bannerTop = 0;
-					flashvars.fileFilter = '<?php echo $fileFilter; ?>';
-					flashvars.maxUploadSize = <?php echo $maxUploadSize; ?>;
-					<?php
-					if (check_login_user()){
-						echo 'flashvars.uploadPermission = 1;' . "\r\n";
-					}						
-					?>						
-		    
-                    swfobject.embedSWF("upload.swf?noc=" + new Date().getTime(), "upload", "150", "45", "10.0.0", "expressInstall.swf", flashvars, {wmode:"transparent", allowScriptAccess:"always"}, {});
-                    // ]]>
-                </script>            
             </div>
             
             <div class="clear"></div>

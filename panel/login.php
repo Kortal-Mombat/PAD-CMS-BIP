@@ -1,4 +1,16 @@
 <?php
+$sql = "SELECT * FROM `" . $dbTables['monitor'] . "` WHERE (`action` like ? ) AND (`ip` = ? ) AND (`date` >= ? )";
+$params = array(
+	'action' => $MON_err_login.'%',
+	'ip' => get_ip(),
+	'date' => date('Y-m-d H:i:s', strtotime('-5 minutes'))
+);
+$res->bind_execute( $params, $sql);
+$numRows = $res->numRows;
+if ($numRows >= 5) {
+	$_COOKIE["login_timeout"] = 5;
+}
+
 if (isset($_COOKIE["login_timeout"]) && $_COOKIE["login_timeout"] > 0)
 {
 	$TEMPL_PATH = CMS_TEMPL . DS . 'login_timeout.php';

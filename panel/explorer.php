@@ -13,14 +13,17 @@ if (!defined('CMS_ROOT')) {
 include_once ( CMS_ROOT . DS . 'includes' . DS . 'check.php' );
 if ($showPanel)
 {
-	if (get_priv_controler($_GET['c']) && isset($_GET['filename']) && isset($_GET['action']))
+	$_GET['filename'] = $_GET['filename'] ?? '';
+	$_GET['action'] = $_GET['action'] ?? '';
+	$_GET['d'] = $_GET['d'] ?? '';
+	if (get_priv_controler($_GET['c']))
 	{	
 		$_GET['act'] = $_GET['act'] ?? '';
 		$_GET['filename'] = str_replace('|', '.', $_GET['filename']);
 		
 	
 		$TEMPL_PATH = CMS_TEMPL . DS . 'explorer.php';
-		$pageTitle .= $TXT_menu_files;
+		$pageTitle = ($pageTitle ?? '').$TXT_menu_files;
 		
 		$crumbpath[] = array ('name' => $TXT_menu_files, 'url' => $PHP_SELF . '?c=' . $_GET['c']);	
 		
@@ -32,7 +35,7 @@ if ($showPanel)
 			$back = substr($_GET['d'], 0, strrpos($_GET['d'], '/'));
 		} else {
 			$_GET['d'] = '.';
-			$back = $GET['d'];
+			$back = $_GET['d'];
 		}
 		if ($back == ''){
 			$back = '.';

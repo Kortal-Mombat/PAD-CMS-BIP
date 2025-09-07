@@ -243,24 +243,7 @@ if ($showFileList){
     </div>
     
 	<div id="upload"></div>
-	<script type="text/javascript">
-		// <![CDATA[
-		var flashvars = {};
-		
-		flashvars.mainDir = "";
-		flashvars.uploadPath = '<?php echo addslashes($_GET['d']); ?>';
-		flashvars.maxWidth = <?php echo $imageConfig['maxWidth']; ?>;
-		flashvars.jpgCompression = <?php echo $imageConfig['jpgCompression']; ?>;
-		flashvars.fileFilter = '<?php echo $fileFilter; ?>';
-		flashvars.maxUploadSize = <?php echo $maxUploadSize; ?>;
-		<?php
-		if (check_login_user()){
-		    echo 'flashvars.uploadPermission = 1;' . "\r\n";
-		}						
-		?>		
-		swfobject.embedSWF("upload.swf?noc=" + new Date().getTime(), "upload", "150", "45", "10.0.0", "expressInstall.swf", flashvars, {wmode: "transparent", allowScriptAccess: "always"}, {});
-		// ]]>
-	</script>	
+	
 </div>
 
 <br class="clear" />

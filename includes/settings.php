@@ -2,7 +2,7 @@
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 	$php_version = '8.4.0';
-	$cms_version = '1.2.1.ak4';
+	$cms_version = '1.2.1.ak5';
 	
 	setlocale(LC_ALL, 'pl_PL');
 	
