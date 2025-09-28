@@ -46,6 +46,11 @@
     <div class="startInfo">
 		<h2>Historia zmian:</h2>
 		<ul>
+			<li>1.3.6 - 2025-09-28</li>
+				<ul>
+					<li>Zmiana nazwy projektu</li>
+				</ul>
+			</li>
 			<li>1.3.5 - 2025-09-15</li>
 				<ul>
 					<li>Poprawki bezpieczeństwa</li>
@@ -111,5 +116,9 @@
 			</li>
 		</ul>
     </div>
+    
+    <div class="startInfo">
+		<h2>Projekt:</h2>
+		<p>Ten fork projektu <a href="https://pad.widzialni.org/wzorcownia">PAD CMS BIP</a>, który zostala opracowana w ramach projektu <span>Polska Akademia Dostepnosci</span> realizowanego przez <span><a href="https://widzialni.org/">Fundacje Widzialni</a></span> i <span><a href="http://mac.gov.pl/">Ministerstwo Administracji i Cyfryzacji</a></span></p>
+    </div>
 </div>
-

@@ -2,7 +2,7 @@
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 	$php_version = '8.4.0';
-	$cms_version = '1.3.5';
+	$cms_version = '1.3.6';
 	
 	setlocale(LC_ALL, 'pl_PL');
 	
@@ -17,9 +17,9 @@
 	$cmsConfig = array(
 		'charset' => 'utf-8',
 		'default_lang' => 'pl',
-		'cms_title' => 'PAD Panel BIP',
-		'cms' => 'PAD',
-		'help_email' => 'pad@widzialni.org',
+		'cms_title' => 'Open Free BIP',
+		'cms' => 'OpenBIP',
+		'help_email' => 'kortal.mombat.dev@gmail.com',
 		'limit' => 10,
 		'upload_files' => array('txt', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'odt', 'odf', 'odp', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'ppt', 'pptx', 'pps', 'avi', 'mov', 'mpg', 'mpeg', 'flv', 'mp3', 'mp4', 'wav', 'zip', 'rar', 'tar', '7z', 'ogg', 'ogv', 'wmv', 'rm', 'm4v', 'm2v', '3gp', '3g2'),
 		'photos' => array('jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF'),

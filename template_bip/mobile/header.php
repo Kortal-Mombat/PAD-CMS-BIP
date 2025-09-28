@@ -4,7 +4,7 @@
 <title><?= $pageTitle; ?></title>
 <meta name="description" content="<?= $pageDescription; ?>" />
 <meta name="keywords" content="<?= $pageKeywords; ?>" />
-<meta name="author" content="Polska Akademia Dostepnosci - PAD" />
+<meta name="author" content="Open Free BIP" />
 <meta name="revisit-after" content="3 days" />
 <meta name="robots" content="all" />
 <meta name="robots" content="index, follow" />

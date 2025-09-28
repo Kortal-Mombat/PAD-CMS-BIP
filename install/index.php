@@ -26,7 +26,7 @@
 	
 	$message .= show_msg ('info', '
 			<p>Witaj!</p>
-			<p>Uruchomiłeś instalację systemu PAD CMS.</p>' 
+			<p>Uruchomiłeś instalację systemu OpenBIP.</p>' 
 	);	
 
 	$loadProblems = 0;	
@@ -48,7 +48,7 @@
 
 	if (version_compare(PHP_VERSION, $php_version, '<'))
 	{
-		$ini_err .= '<li>Potrzebujesz PHP w wersji <strong>'.$php_version.'</strong> lub wyższej aby uruchomić tą wersję PAD CMS.</li>';
+		$ini_err .= '<li>Potrzebujesz PHP w wersji <strong>'.$php_version.'</strong> lub wyższej aby uruchomić tą wersję OpenBIP.</li>';
 	}
 	
 	if ((int)ini_get('memory_limit') < 64) {
@@ -120,7 +120,7 @@
 				{
 					$message .= show_msg ('err', '
 						<p>Uwaga! Do jednego z katalogów nie udało się ustawić prawa do zapisu.</p>
-						<p>Do prawidłowego działania PAD CMS musisz ustawić prawa do zapisu dla następujących katalogów:</p>
+						<p>Do prawidłowego działania OpenBIP musisz ustawić prawa do zapisu dla następujących katalogów:</p>
 						<ul>
 							<li><code>container</code></li>
 							<li><code>download</code></li>
@@ -245,7 +245,7 @@
 						$message .= show_msg ('msg', '
 							<h2>Gratulacje!</h2>
 							<p>Instalacja przebiegła pomyślnie.</p>
-							<p>Usuń katalog <code>install</code> z serwera, aby korzystać ze strony PAD CMS.</p>	
+							<p>Usuń katalog <code>install</code> z serwera, aby korzystać ze strony OpenBIP.</p>	
 							<p><a href="../index.php" class="button">Rozpocznij</a></p>						
 						');
 						unset($_POST);
@@ -255,7 +255,7 @@
 						$message .= show_msg ('err', '
 							<h2>Niepowodzenie!</h2>
 							<p>Instalacja nie została dokończona.</p>
-							<p>Nie udało się ustawić danych użytkownika PAD CMS.</p>	
+							<p>Nie udało się ustawić danych użytkownika OpenBIP.</p>	
 							<p>Skontaktuj się z administratorem swojego serwera.</p>						
 						');
 					}	
@@ -267,7 +267,7 @@
 						$message .= show_msg ('err', '
 							<h2>Uwaga!</h2>
 							<p>Instalacja prawdopodobnie została już przeprowadzona.</p>
-							<p>Jeśli tak, usuń katalog <code>install</code> z serwera, aby korzystać ze strony PAD CMS.</p>	
+							<p>Jeśli tak, usuń katalog <code>install</code> z serwera, aby korzystać ze strony OpenBIP.</p>	
 							<p><a href="../index.php" class="button">Rozpocznij</a></p>						
 							<p>Poniżej lista napotkanych problemów:</p>
 							<p>'.str_replace(',' ,'<br/>', $problemList).'</p>

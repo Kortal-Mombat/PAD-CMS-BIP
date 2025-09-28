@@ -4,7 +4,7 @@
 
 <div id="contentWrapper">
 <img src="template/images/logoPADCMS.png" alt="Logo CMS Polskiej Akademii Dostępności" class="logoPAD"/>
-<h1>Instalacja PAD CMS - BIP</h1>
+<h1>Instalacja OpenBIP</h1>
 
 <div id="content" role="main">
 <?php
@@ -30,12 +30,9 @@
 	<?php
 	}
 ?>
-<div id="padInfo">
-   	<p><img src="template/images/logos.png" alt="Polska Akademia Dostepnosci realizowana przez Ministerstwo Administracji i Cyfryzacji oraz Fundacje Widzialni"/></p>
-</div>
 
 <div id="copyright">
-	<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencja Creative Commons - CC-BY-SA" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />PAD CMS jest dostępny na <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">licencji <span lang="en">Creative Commons</span> Uznanie autorstwa - Na tych samych warunkach 4.0 Międzynarodowe</a> z wyłączeniem opublikowanych treści.</p>
+	<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencja Creative Commons - CC-BY-SA" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />OpenBIP jest dostępny na <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">licencji <span lang="en">Creative Commons</span> Uznanie autorstwa - Na tych samych warunkach 4.0 Międzynarodowe</a> z wyłączeniem opublikowanych treści.</p>
 </div>  
 
 </div>  

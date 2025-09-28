@@ -37,7 +37,7 @@ $dbConfig = array(
 
 	/**
 	 * Prefiks tabel w bazie danych.
-	 * Możesz uruchomić kilka stron PAD CMS w jednej bazie danych.
+	 * Możesz uruchomić kilka stron OpenBIP w jednej bazie danych.
 	 * Stosuj TYLKO cyfry, litery i znaki podkreślenia.
 	 */
 	'prefix' => 'pad_bip_',

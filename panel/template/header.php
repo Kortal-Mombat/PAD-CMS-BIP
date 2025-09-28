@@ -3,7 +3,7 @@
 <head>
 <title><?= ($pageTitle ?? '') . ' - ' . $cmsConfig['cms_title'] . ' - ' . $pageInfo['name']; ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Polska Akademia Dostępności" />
+<meta name="author" content="Open Free BIP" />
 <meta name="robots" content="noindex, nofollow" />
 <?php
 	foreach ($js as $k => $v)

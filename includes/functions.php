@@ -9,7 +9,7 @@ function check_install_files ()
 	global $php_version;
 	if (version_compare(PHP_VERSION, $php_version, '<'))
 	{
-		die('Potrzebujesz PHP w wersji '.$php_version.' lub wyższej aby uruchomić tą wersję PAD CMS.');
+		die('Potrzebujesz PHP w wersji '.$php_version.' lub wyższej aby uruchomić tą wersję OpenBIP.');
 	}
 		
 	if (file_exists('install'))

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
-    <title>Instalacja PAD CMS</title>
+    <title>Instalacja OpenBIP</title>
     <meta name="author" content="<?php echo $cmsConfig['cms']; ?>" />
     <meta charset="UTF-8" />
     <link rel="stylesheet" media="all" type="text/css" href="template/css/style.css"/>
