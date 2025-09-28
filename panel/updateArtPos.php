@@ -22,9 +22,12 @@ if ($showPanel){
 		$sql = 'UPDATE `' . $dbTables['art_to_pages'] . '` SET `pos` = CASE `id_art` ';
 		$tempArr = array();
 		foreach ($articlePos['artId'] as $key => $value){
-			$pos = $key + 1 + $sql_start;
-			$sql .= 'WHEN ' . $value . ' THEN ' .$pos . ' ';
-			$tempArr[] = $value;
+			if (is_numeric($key) && is_numeric($value))
+			{
+				$pos = intval($key) + 1 + $sql_start;
+				$sql .= 'WHEN ' . intval($value) . ' THEN ' .$pos . ' ';
+			}
+			$tempArr[] = intval($value);
 		}
 		$sql .= 'END WHERE `id_art` in (' . implode(',' , $tempArr) . ') and `id_page` = ?';		
 	}

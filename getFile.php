@@ -4,7 +4,7 @@
 		exit;
 	}
 	$dir = 'download';
-	$vowels = array("/", "\\", "http", "//", ":", "..", ".inc", ".php", ".sql", ".js");
+	$vowels = array("/", "\\", ":", "..", ".inc", ".php", ".sql", ".js");
 	
 	$sql = "SELECT * FROM `" . $dbTables['files'] . "` WHERE (`id_file`= ?) LIMIT 1";
 	$params = array ('id_file' => $_GET['id']);
@@ -86,7 +86,15 @@ if ($res->numRows != 0) {
 
     if ($protectFile == false) {
         $file = $fname = $row['file'];
-        $file = $dir . '/' . str_replace($vowels, '', $file);
+
+
+        $_new = str_replace($vowels, '', $file);
+        while($_new != $text)
+        {
+            $text = $_new;
+            $_new = str_replace($vowels, '', $file);
+        }
+        $file = $dir . '/' . $_new;
 
 
         if (is_file($file)) {

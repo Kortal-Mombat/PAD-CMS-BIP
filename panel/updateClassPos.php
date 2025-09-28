@@ -19,8 +19,11 @@ if ($showPanel){
 	if (count($classPos) > 0){
 		$sql = "UPDATE `" . $dbTables['timetable'] . "` SET `pos` = CASE `id` ";
 		foreach ($classPos['classId'] as $key => $value){
-			$pos = $key + 1 + $sql_start;
-			$sql .= "WHEN " . $value . " THEN " .$pos . " ";
+			if (is_numeric($key) && is_numeric($value))
+			{
+				$pos = intval($key) + 1 + $sql_start;
+				$sql .= 'WHEN ' . intval($value) . ' THEN ' .$pos . ' ';
+			}		
 		}
 		$sql .= "END ";		
 	}

@@ -21,8 +21,11 @@ if ($showPanel){
 	if (count($photoPos) > 0){
 		$sql = 'UPDATE `' . $dbTables['photos'] . '` SET `pos` = CASE `id_photo` ';
 		foreach ($photoPos['photoId'] as $key => $value){
-			$pos = $key + 1;
-			$sql .= 'WHEN ' . $value . ' THEN ' .$pos . ' ';
+			if (is_numeric($key) && is_numeric($value))
+			{
+				$pos = intval($key) + 1;
+				$sql .= 'WHEN ' . intval($value) . ' THEN ' .$pos . ' ';
+			}
 		}
 		$sql .= 'END WHERE `id_page` = ? AND `type` = ?';
 		

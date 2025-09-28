@@ -306,10 +306,10 @@ if ($showPanel)
 				{
 					$add_sql = $add_sql ?? '';
 					//debug($_POST['gr']);
-					if ($_POST['gr'] >= 0 && $_POST['gr'] != $_GET['id'])
-					{
-						$add_sql = "ref = '".$_POST['gr']."', ";
-					}
+					if (is_numeric($_POST['gr']) && $_POST['gr'] != $_GET['id'])
+                    {
+                        $add_sql = "ref = '".intval($_POST['gr'])."', ";
+                    }
 					
 					$sql = "UPDATE `" . $dbTables['pages'] . "` SET " . $add_sql . "
 							name = ?, url_name = ?, lead_text = ?, text = ?, author = ?, wprowadzil = ?, podmiot = ?, attrib = ?, ext_url = ?, new_window = ?, protected = ?, ingallery = ?,

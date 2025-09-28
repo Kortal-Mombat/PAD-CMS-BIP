@@ -46,29 +46,34 @@
     <div class="startInfo">
 		<h2>Historia zmian:</h2>
 		<ul>
-			<li>1.2.1.ak5 - 2025-09-07</li>
+			<li>1.3.5 - 2025-09-15</li>
+				<ul>
+					<li>Poprawki bezpieczeństwa</li>
+				</ul>
+			</li>
+			<li>1.3.4 - 2025-09-07</li>
 				<ul>
 					<li>Zabezpieczenie przed brute-force</li>
 				</ul>
 			</li>
-			<li>1.2.1.ak4 - 2025-07-15</li>
+			<li>1.3.3 - 2025-07-15</li>
 				<ul>
 					<li>Dostosowanie do PHP 8.4</li>
 					<li>Poprawki bezpieczeństwa</li>
 				</ul>
 			</li>
-			<li>1.2.1.ak3 - 2025-07-13</li>
+			<li>1.3.2 - 2025-07-13</li>
 				<ul>
 					<li>Poprawki bezpieczeństwa</li>
 					<li>Ujednolicenie stylu mobilnego</li>
 				</ul>
 			</li>
-			<li>1.2.1.ak2 - 2024-04-24</li>
+			<li>1.3.1 - 2024-04-24</li>
 				<ul>
 					<li>Poprawki bezpieczeństwa</li>
 				</ul>
 			</li>
-			<li>1.2.1.ak1 - 2023-08-11</li>
+			<li>1.3.0 - 2023-08-11</li>
 				<ul>
 					<li>Dostosowanie do PHP 8.2</li>
 					<li>Ujednolicenie przekierowań z http na https</li>

@@ -22,8 +22,11 @@ if ($showPanel){
 	$sql = 'UPDATE `' . $dbTables['adverts'] . '` SET `pos` = CASE `id_adv` ';
 	foreach ($advPos['advId'] as $key => $value)
 	{
-	    $pos = $key + 1;
-	    $sql .= 'WHEN ' . $value . ' THEN ' .$pos . ' ';
+		if (is_numeric($key) && is_numeric($value))
+		{
+			$pos = intval($key) + 1;
+			$sql .= 'WHEN ' . intval($value) . ' THEN ' .$pos . ' ';
+		}
 	}
 	$sql .= 'END WHERE `place` = ?';
 	
